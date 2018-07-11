@@ -30,7 +30,7 @@ Boilerplate used: https://github.com/maximegris/angular-electron
 
 You can deactivate "Developer Tools" by commenting `win.webContents.openDevTools();` in `main.ts`.
 
-Your application is optimised. Only /dist folder and node dependencies are included in the executable.
+Your application is optimized. Only /dist folder and node dependencies are included in the executable.
 
 ## Browser mode
 

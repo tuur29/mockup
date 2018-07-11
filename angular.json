@@ -22,9 +22,11 @@
               "src/favicon.png",
               "src/favicon.icns",
               "src/favicon.256x256.png",
-              "src/favicon.512x512.png"
+              "src/favicon.512x512.png",
+              { "input": "./node_modules/dugite/git/", "glob": "**/*", "output": "./resources/git/" }
             ],
             "styles": [
+              "src/theme.less",
               "src/styles.scss"
             ],
             "scripts": []
@@ -95,6 +97,7 @@
             "karmaConfig": "src/karma.conf.js",
             "scripts": [],
             "styles": [
+              "src/theme.less",
               "src/styles.scss"
             ],
             "assets": [
