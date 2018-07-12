@@ -9,14 +9,16 @@ serve = args.some(val => val === '--serve');
 function createWindow() {
 
   const electronScreen = screen;
-  const size = electronScreen.getPrimaryDisplay().workAreaSize;
 
   // Create the browser window.
   win = new BrowserWindow({
     x: 0,
     y: 0,
-    width: size.width,
-    height: size.height
+    width: 1024,
+    height: 768,
+    minWidth: 800,
+    minHeight: 600,
+    autoHideMenuBar: true
   });
 
   if (serve) {
@@ -31,7 +33,7 @@ function createWindow() {
     }));
   }
 
-  win.webContents.openDevTools();
+  // win.webContents.openDevTools();
 
   // Emitted when the window is closed.
   win.on('closed', () => {

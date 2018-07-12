@@ -1,6 +1,35 @@
 {
   "MENUBAR": {
-      
+    "FILE": {
+      "TITLE": "File",
+      "NEW": {
+        "TITLE": "New",
+        "ARTBOARD": "New artboard",
+        "PROJECT": "New project"
+      },
+      "OPENPROJECT": "Open Project",
+      "EXIT": "Exit"
+    },
+    "EDIT": {
+      "TITLE": "Edit",
+      "COPY": "Copy",
+      "PASTE": "Paste"
+    },
+    "VIEW": {
+      "TITLE": "View",
+      "DARKMODE": "Dark mode"
+    },
+    "TOOLS": {
+      "TITLE": "Tools",
+      "GIT": "Git integration",
+      "SETTINGS": "Settings"
+    },
+    "HELP": {
+      "TITLE": "Help",
+      "HELPSITE": "Open Help site",
+      "CHECKUPDATES": "Check for Updates",
+      "ABOUT": "About"
+    }
   },
   "TOOLBOX": {
     "SELECT": {

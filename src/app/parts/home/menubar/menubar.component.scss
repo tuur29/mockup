@@ -1,0 +1,10 @@
+
+// Make menubar draggable
+
+ul {
+    -webkit-app-region: drag;
+}
+
+ul > li {
+    -webkit-app-region: no-drag;
+}

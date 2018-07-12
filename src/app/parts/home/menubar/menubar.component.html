@@ -3,23 +3,23 @@
 
   <!-- File  -->
   <li nz-submenu>
-    <span title>File</span>
+    <span title>{{ 'MENUBAR.FILE.TITLE' | translate }}</span>
     <ul>
 
       <li nz-submenu>
-        <span title>New</span>
+        <span title>{{ 'MENUBAR.FILE.NEW.TITLE' | translate }}</span>
         <ul>
-          <li nz-menu-item>New Project</li>
-          <li nz-menu-item>New Artboard</li>
+          <li nz-menu-item>{{ 'MENUBAR.FILE.NEW.PROJECT' | translate }}</li>
+          <li nz-menu-item>{{ 'MENUBAR.FILE.NEW.ARTBOARD' | translate }}</li>
         </ul>
       </li>
 
       <li nz-menu-item>
-        <span title>Open Project</span>
+        <span title>{{ 'MENUBAR.FILE.OPENPROJECT' | translate }}</span>
       </li>
 
-      <li nz-menu-item>
-        <span title>Exit</span>
+      <li nz-menu-item (click)="exitApp()">
+        <span title>{{ 'MENUBAR.FILE.EXIT' | translate }}</span>
       </li>
 
     </ul>
@@ -28,15 +28,15 @@
 
   <!-- Edit -->
   <li nz-submenu>
-    <span title>Edit</span>
+    <span title>{{ 'MENUBAR.EDIT.TITLE' | translate }}</span>
     <ul>
 
       <li nz-menu-item>
-        <span title>Copy</span>
+        <span title>{{ 'MENUBAR.EDIT.COPY' | translate }}</span>
       </li>
 
       <li nz-menu-item>
-        <span title>Paste</span>
+        <span title>{{ 'MENUBAR.EDIT.PASTE' | translate }}</span>
       </li>
 
     </ul>
@@ -45,11 +45,11 @@
 
   <!-- View -->
   <li nz-submenu>
-      <span title>View</span>
+      <span title>{{ 'MENUBAR.VIEW.TITLE' | translate }}</span>
       <ul>
 
         <li nz-menu-group>
-          <label title nz-checkbox>Dark mode</label>
+          <label title nz-checkbox>{{ 'MENUBAR.VIEW.DARKMODE' | translate }}</label>
         </li>
 
       </ul>
@@ -59,23 +59,15 @@
     
   <!-- Tools -->
   <li nz-submenu>
-    <span title>Tools</span>
+    <span title>{{ 'MENUBAR.TOOLS.TITLE' | translate }}</span>
     <ul>
 
-      <li nz-submenu>
-        <span title>Git integration</span>
-        <ul>
-            <li nz-menu-item>
-                <a click="openGit()">Open Git window</a>
-              </li>
-              <li nz-menu-item>
-                <a routerLink="/git">Open Git in current</a>
-              </li>
-        </ul>
+      <li nz-menu-item (click)="openPageInPopup('git')">
+        <span title>{{ 'MENUBAR.TOOLS.GIT' | translate }}</span>
       </li>
 
-      <li nz-menu-item>
-        <span title>Settings</span>
+      <li nz-menu-item (click)="openPageInPopup('settings')">
+        <span title>{{ 'MENUBAR.TOOLS.SETTINGS' | translate }}</span>
       </li>
 
     </ul>
@@ -84,19 +76,19 @@
 
   <!-- Help -->
   <li nz-submenu>
-    <span title>Help</span>
+    <span title>{{ 'MENUBAR.HELP.TITLE' | translate }}</span>
     <ul>
 
-      <li nz-menu-item>
-        <span title>Open Help site</span>
+      <li nz-menu-item (click)="openHelpSite()">
+        <span title>{{ 'MENUBAR.HELP.HELPSITE' | translate }}</span>
       </li>
 
       <li nz-menu-item>
-        <span title>Check for Updates</span>
+        <span title>{{ 'MENUBAR.HELP.CHECKUPDATES' | translate }}</span>
       </li>
 
-      <li nz-menu-item>
-        <span title>About</span>
+      <li nz-menu-item (click)="openPageInPopup('about')">
+        <span title>{{ 'MENUBAR.HELP.ABOUT' | translate }}</span>
       </li>
 
     </ul>
@@ -104,6 +96,3 @@
 
 
 </ul>
-
-<h1>Test translations</h1>
-  <p>{{ 'PAGES.HOME.TITLE' | translate }}</p>

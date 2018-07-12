@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ElectronService } from '../../../providers/electron.service';
 
-const remote = require('electron').remote;
-const BrowserWindow = remote.BrowserWindow;
+const opn = require('opn');
 
 @Component({
   selector: 'app-menubar',
@@ -10,22 +10,47 @@ const BrowserWindow = remote.BrowserWindow;
 })
 export class MenubarComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    public electron: ElectronService,
+  ) { }
 
   ngOnInit() {
   }
 
-  openGit() {
-    var win = new BrowserWindow({
-      width: 800,
-      height: 600,
-      center: true,
-      resizable: false,
-      frame: true,
-      transparent: false
-    });
-    // Load the page + route
-    win.loadURL('file://' + __dirname + '/index.html#/git');
+  openHelpSite() {
+    opn("https://tuur29.github.com/mockup/");
+  }
+
+  exitApp() {
+    this.electron.remote.app.quit();
+  }
+
+  openPageInPopup(path: string, width: number = 1024, height: number = 768, seperate: boolean = false) {
+
+    const BrowserWindow = this.electron.remote.BrowserWindow;
+
+    let options = {
+      width: width,
+      height: height,
+      minWidth: 800,
+      minHeight: 600,
+      autoHideMenuBar: true
+    };
+
+    if (!seperate) {
+      let currentWindow = this.electron.remote.BrowserWindow;
+      options['parent'] = currentWindow;
+    }
+
+    let win = new BrowserWindow(options);
+    // TODO: find way to differ between debug or not
+    let debug = true;
+    if (debug) {
+      win.loadURL('http://localhost:4200/#/'+path);
+    } else {
+      win.loadURL("file://" + __dirname +  "/index.html#/"+path);
+    }
+
   }
 
 }
