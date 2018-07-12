@@ -5,7 +5,7 @@ An application for making mockups and exporting them to an easily viewable html 
 
 ## How?
 
-Artboards in your project are saved as separate SVG's and then saved inside a HTML page.
+Artboards in your project are saved as JSON and then saved inside a HTML page.
 
 Main benefits of this approach:
  - Preview your project locally or via a webserver inside any browser window!
