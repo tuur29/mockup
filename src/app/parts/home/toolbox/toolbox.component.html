@@ -1,3 +1,40 @@
 
-<h1>Test colorpicker</h1>
-<input [(colorPicker)]="color" [style.background]="color"/>
+<ul nz-menu nzMode="inline" [nzInlineCollapsed]="collapsed">
+
+  <li nz-submenu>
+    <span title>
+      <i class="anticon"><fa-icon [icon]="['far','mouse-pointer']"></fa-icon></i>
+      <span>{{ 'TOOLBOX.SELECT.TITLE' | translate }}</span>
+    </span>
+    <ul>
+      <li nz-menu-item>{{ 'TOOLBOX.SELECT.ADD' | translate }}</li>
+      <li nz-menu-item>{{ 'TOOLBOX.SELECT.REMOVE' | translate }}</li>
+    </ul>
+  </li>
+
+  <li nz-menu-item>
+      <span title>
+        <i class="anticon"><fa-icon [icon]="['far','eye-dropper']"></fa-icon></i>
+        <span>{{ 'TOOLBOX.EYEDROPPER' | translate }}</span>
+      </span>
+    </li>
+
+  <!-- Color picker -->
+  <li class="colors">
+    <app-colorpicker [(colorValue)]="background" [(colorPresets)]="presets"
+      [style.zIndex]="lastColorPicked=='back'?'2':'1'" (click)="lastColorPicked='back'">
+    </app-colorpicker>
+    <app-colorpicker [(colorValue)]="foreground" [(colorPresets)]="presets"
+      [style.zIndex]="lastColorPicked=='fore'?'2':'1'" (click)="lastColorPicked='fore'">
+    </app-colorpicker>
+  </li>
+
+  <!-- Collapse menu -->
+  <li nz-menu-item (click)="collapsed=!collapsed">
+    <span title>
+      <i class="anticon"><fa-icon [icon]="['far','arrow-alt-from-'+(collapsed?'left':'right')]"></fa-icon></i>
+      <span>{{ 'GENERAL.COLLAPSE' | translate }}</span>
+    </span>
+  </li>
+
+</ul>

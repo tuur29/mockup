@@ -1,21 +1,109 @@
 
-  <h1>Test ng-zorro & FontAwesome</h1>
-  <nz-dropdown [nzPlacement]="'bottomLeft'">
-    <button nz-button nz-dropdown nzType="primary">
-      <i class="anticon">
-        <fa-icon [icon]="['far','user']"></fa-icon>
-      </i>
-      Hover me
-    </button>
-    <ul nz-menu>
-      <li nz-menu-item>
-        <a click="openGit()">Open Git window</a>
+<ul nz-menu [nzMode]="'horizontal'">
+
+  <!-- File  -->
+  <li nz-submenu>
+    <span title>File</span>
+    <ul>
+
+      <li nz-submenu>
+        <span title>New</span>
+        <ul>
+          <li nz-menu-item>New Project</li>
+          <li nz-menu-item>New Artboard</li>
+        </ul>
       </li>
+
       <li nz-menu-item>
-        <a routerLink="/git">Open Git in current</a>
+        <span title>Open Project</span>
       </li>
+
       <li nz-menu-item>
-        <a>3rd menu item length</a>
+        <span title>Exit</span>
       </li>
+
     </ul>
-  </nz-dropdown>
+  </li>
+
+
+  <!-- Edit -->
+  <li nz-submenu>
+    <span title>Edit</span>
+    <ul>
+
+      <li nz-menu-item>
+        <span title>Copy</span>
+      </li>
+
+      <li nz-menu-item>
+        <span title>Paste</span>
+      </li>
+
+    </ul>
+  </li>
+
+
+  <!-- View -->
+  <li nz-submenu>
+      <span title>View</span>
+      <ul>
+
+        <li nz-menu-group>
+          <label title nz-checkbox>Dark mode</label>
+        </li>
+
+      </ul>
+    </li>
+
+
+    
+  <!-- Tools -->
+  <li nz-submenu>
+    <span title>Tools</span>
+    <ul>
+
+      <li nz-submenu>
+        <span title>Git integration</span>
+        <ul>
+            <li nz-menu-item>
+                <a click="openGit()">Open Git window</a>
+              </li>
+              <li nz-menu-item>
+                <a routerLink="/git">Open Git in current</a>
+              </li>
+        </ul>
+      </li>
+
+      <li nz-menu-item>
+        <span title>Settings</span>
+      </li>
+
+    </ul>
+  </li>
+
+
+  <!-- Help -->
+  <li nz-submenu>
+    <span title>Help</span>
+    <ul>
+
+      <li nz-menu-item>
+        <span title>Open Help site</span>
+      </li>
+
+      <li nz-menu-item>
+        <span title>Check for Updates</span>
+      </li>
+
+      <li nz-menu-item>
+        <span title>About</span>
+      </li>
+
+    </ul>
+  </li>
+
+
+</ul>
+
+<h1>Test translations</h1>
+  <p>{{ 'PAGES.HOME.TITLE' | translate }}</p>

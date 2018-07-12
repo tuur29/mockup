@@ -8,6 +8,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from './routing.module';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
+import { WebStorageModule } from 'ngx-store';
+
 
 // electron
 import { ElectronService } from './providers/electron.service';
@@ -39,6 +41,7 @@ import { AppComponent } from './app.component';
     BrowserModule,
     BrowserAnimationsModule,
     HttpClientModule,
+    WebStorageModule,
     AppRoutingModule,
     TranslateModule.forRoot({
       loader: {

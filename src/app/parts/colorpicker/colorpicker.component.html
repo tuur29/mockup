@@ -1,0 +1,10 @@
+
+<button nz-button nzSize="large"
+  [(colorPicker)]="colorValue" cpWidth="275"
+  [cpPresetColors]="colorPresets" [cpPresetLabel]="'TOOLBOX.COLORPICKER.PRESETSTITLE' | translate"
+  [cpPresetEmptyMessage]="'TOOLBOX.COLORPICKER.NOPRESETS' | translate"
+  (cpPresetColorsChange)="AddPresetColor($event)"
+  [cpAddColorButton]="true" cpAddColorButtonText="+" cpAddColorButtonClass="add-swatch"
+  [cpCancelButton]="true" [cpCancelButtonText]="'GENERAL.CANCEL' | translate" cpCancelButtonClass="ant-btn"
+  [style.background]="colorValue">
+</button>

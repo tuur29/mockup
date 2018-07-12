@@ -1,12 +1,13 @@
 import { NgModule } from '@angular/core';
 import { SharedModule } from '../../../shared.module';
 import { ToolboxComponent } from './toolbox.component';
-import { ColorPickerModule } from 'ngx-color-picker';
+import { ColorpickerModule } from '../../colorpicker/colorpicker.module';
+
 
 @NgModule({
   imports: [
     SharedModule,
-    ColorPickerModule,
+    ColorpickerModule,
   ],
   declarations: [ToolboxComponent],
   exports: [ToolboxComponent]

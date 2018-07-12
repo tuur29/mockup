@@ -19,7 +19,7 @@ export class CanvasComponent implements OnInit {
   }
 
   setupCanvas() {
-    this.canvas = new fabric.Canvas('canvas', { selection: false });
+    this.canvas = new fabric.Canvas('example', { selection: false });
 
     let red = new fabric.Rect({
       top: 100, left: 0, width: 80, height: 50, fill: 'red' });

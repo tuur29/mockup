@@ -1,0 +1,17 @@
+
+.canvas {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    overflow-x: scroll;
+    overflow-y: scroll;
+    background: #eee;
+}
+
+#example {
+    background: white;
+    box-shadow: 0 0 10px #888;
+    margin: 25px;
+}

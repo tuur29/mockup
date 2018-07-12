@@ -1,0 +1,15 @@
+
+.container {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+    border-top: 1px solid #e8e8e8;
+    background: white;
+}
+
+.container > * {
+    margin: 0 10px;
+}

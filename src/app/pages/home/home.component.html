@@ -1,12 +1,32 @@
 
-<div class="container">
+<nz-layout>
 
-  <h1>Test translations</h1>
-  <p>{{ 'PAGES.HOME.TITLE' | translate }}</p>
+  <nz-sider [nzCollapsed]="toolboxCollapsed">
+    <app-toolbox [(collapsed)]="toolboxCollapsed"></app-toolbox>
+  </nz-sider>
 
-  <app-canvas></app-canvas>
-  <app-menubar></app-menubar>
-  <app-toolbox></app-toolbox>
-  <app-status></app-status>
+  <nz-layout>
+    
+    <nz-header>
+      <app-menubar></app-menubar>
+    </nz-header>
 
-</div>
+    <!-- main part is split into main and another sider -->
+    <nz-layout class="content">
+
+      <nz-content>
+          <app-canvas></app-canvas>
+      </nz-content>
+
+      <nz-sider [nzWidth]="300" class="panel">
+        Panel
+      </nz-sider>
+
+    </nz-layout>
+
+    <nz-footer>
+        <app-status></app-status>
+    </nz-footer>
+
+  </nz-layout>
+</nz-layout>

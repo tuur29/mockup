@@ -1,7 +1,32 @@
 {
-  "PAGES": {
-      "HOME": {
-          "TITLE": "App"
-      }
+  "MENUBAR": {
+      
+  },
+  "TOOLBOX": {
+    "SELECT": {
+      "TITLE": "Select",
+      "ADD": "Add to selection",
+      "REMOVE": "Remove from selection"
+    },
+    "EYEDROPPER": "Pick color",
+    "COLORPICKER": {
+      "PRESETSTITLE": "Swatches (add by pressing '+' above)",
+      "NOPRESETS": "No swatches defined"
+    }
+  },
+  "STATUS": {
+
+  },
+  "CANVAS": {
+
+  },
+  "GENERAL": {
+      "OK": "OK",
+      "SAVE": "Save",
+      "CANCEL": "Cancel",
+      "ADD": "Add",
+      "REMOVE": "Remove",
+      "DELETE": "Delete",
+      "COLLAPSE": "Collapse"
   }
 }

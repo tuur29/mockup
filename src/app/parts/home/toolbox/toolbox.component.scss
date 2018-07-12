@@ -1,0 +1,29 @@
+
+// layout colorpickers like adobe products
+
+ul[nz-menu] {
+    height: 100%;
+    padding-top: 50px;
+}
+
+.colors {
+    position: relative;
+    left: 8px;
+    margin: 15px 0 45px 0;
+    text-align: center;
+}
+
+.colors > app-colorpicker {
+    position: relative;
+    z-index: 1;
+}
+
+::ng-deep .colors > app-colorpicker > button {
+    border: 1.5px solid rgba(0, 0, 0, 0.65);
+}
+
+::ng-deep .colors > app-colorpicker:nth-of-type(2) > button {
+    top: 16px;
+    left: -16px;
+}
+

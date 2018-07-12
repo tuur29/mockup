@@ -32,7 +32,11 @@ export class GitComponent implements OnInit {
       console.error(error);
       this.gitoutput = error;
     }
-    
+
+  }
+
+  back() {
+    history.back();
   }
 
 }
