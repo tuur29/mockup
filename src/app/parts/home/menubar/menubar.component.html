@@ -1,0 +1,21 @@
+
+  <h1>Test ng-zorro & FontAwesome</h1>
+  <nz-dropdown [nzPlacement]="'bottomLeft'">
+    <button nz-button nz-dropdown nzType="primary">
+      <i class="anticon">
+        <fa-icon [icon]="['far','user']"></fa-icon>
+      </i>
+      Hover me
+    </button>
+    <ul nz-menu>
+      <li nz-menu-item>
+        <a click="openGit()">Open Git window</a>
+      </li>
+      <li nz-menu-item>
+        <a routerLink="/git">Open Git in current</a>
+      </li>
+      <li nz-menu-item>
+        <a>3rd menu item length</a>
+      </li>
+    </ul>
+  </nz-dropdown>

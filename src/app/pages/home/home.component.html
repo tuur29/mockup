@@ -1,44 +1,12 @@
 
-
 <div class="container">
 
   <h1>Test translations</h1>
   <p>{{ 'PAGES.HOME.TITLE' | translate }}</p>
 
-
-  <h1>Test ng-zorro & FontAwesome</h1>
-  <nz-dropdown [nzPlacement]="'bottomLeft'">
-    <button nz-button nz-dropdown nzType="primary">
-      <i class="anticon">
-        <fa-icon [icon]="['far','user']"></fa-icon>
-      </i>
-      Hover me
-    </button>
-    <ul nz-menu>
-      <li nz-menu-item>
-        <a>1st menu item length</a>
-      </li>
-      <li nz-menu-item>
-        <a>2nd menu item length</a>
-      </li>
-      <li nz-menu-item>
-        <a>3rd menu item length</a>
-      </li>
-    </ul>
-  </nz-dropdown>
-
-  <h1>Test colorpicker</h1>
-  <input [(colorPicker)]="color" [style.background]="color"/>
-
-
-  <h1>Test fabricjs canvas</h1>
-  <canvas id="canvas" class="canvas" width="300" height="300"></canvas>
-
-
-  <h1>Test git</h1>
-  <input type="text" placeholder="C:\path\to\repo" #path value="C:\github\mockup" />
-  <input type="text" placeholder="C:\path\to\git\executable" #git value="C:\github\mockup\node_modules\dugite\git\" />
-  <button nz-button nz-dropdown nzType="primary" (click)="testGit(git.value,path.value)">Test git</button>
-  <br><textarea readonly style="min-width:500px;min-height:300px">{{gitoutput}}</textarea>
+  <app-canvas></app-canvas>
+  <app-menubar></app-menubar>
+  <app-toolbox></app-toolbox>
+  <app-status></app-status>
 
 </div>

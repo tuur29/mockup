@@ -1,0 +1,11 @@
+
+
+<div class="container">
+
+  <h1>Test git</h1>
+  <input type="text" placeholder="C:\path\to\repo" #path value="C:\github\mockup" />
+  <input type="text" placeholder="C:\path\to\git\executable" #git value="C:\github\mockup\node_modules\dugite\git\" />
+  <button nz-button nz-dropdown nzType="primary" (click)="testGit(git.value,path.value)">Test git</button>
+  <br><textarea readonly style="min-width:500px;min-height:300px">{{gitoutput}}</textarea>
+
+</div>
