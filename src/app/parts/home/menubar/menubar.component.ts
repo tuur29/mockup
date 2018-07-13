@@ -21,6 +21,14 @@ export class MenubarComponent implements OnInit {
     opn("https://tuur29.github.com/mockup/");
   }
 
+  openDevTools() {
+    this.electron.remote.webContents.getFocusedWebContents().openDevTools();
+  }
+
+  zoom(fraction: number) {
+    console.log(fraction);
+  }
+
   exitApp() {
     this.electron.remote.app.quit();
   }

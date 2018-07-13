@@ -7,22 +7,41 @@
         "ARTBOARD": "New artboard",
         "PROJECT": "New project"
       },
+      "SAVE": "Save",
+      "SAVEAS": {
+        "TITLE": "Save as",
+        "PNG": "Image (PNG)",
+        "SVG": "Image (SVG)",
+        "PDF": "PDF"
+      },
       "OPENPROJECT": "Open Project",
       "EXIT": "Exit"
     },
     "EDIT": {
       "TITLE": "Edit",
+      "UNDO": "Undo",
+      "REDO": "Redo",
+      "CUT": "Cut",
       "COPY": "Copy",
-      "PASTE": "Paste"
+      "PASTE": "Paste",
+      "GROUP": {
+        "TITLE": "Grouping",
+        "MAKEGROUP": "Group items",
+        "UNGROUP": "Ungroup items"
+      }
     },
     "VIEW": {
       "TITLE": "View",
-      "DARKMODE": "Dark mode"
+      "DARKMODE": "Dark mode",
+      "PREVIEWBROWSER": "Preview project",
+      "TOGGLEFULLSCREEN": "Toggle fullscreen",
+      "ZOOM": "Zoom level"
     },
     "TOOLS": {
       "TITLE": "Tools",
       "GIT": "Git integration",
-      "SETTINGS": "Settings"
+      "SETTINGS": "Settings",
+      "OPENDEVTOOLS": "Open Dev Tools"
     },
     "HELP": {
       "TITLE": "Help",

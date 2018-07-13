@@ -18,8 +18,16 @@
         <span title>{{ 'MENUBAR.FILE.OPENPROJECT' | translate }}</span>
       </li>
 
-      <!-- Add menu item for save & save as -->
-      <!-- Add menu divider(s?) -->
+      <li nz-submenu>
+        <span title>{{ 'MENUBAR.FILE.SAVEAS.TITLE' | translate }}</span>
+        <ul>
+          <li nz-menu-item>{{ 'MENUBAR.FILE.SAVEAS.PNG' | translate }}</li>
+          <li nz-menu-item>{{ 'MENUBAR.FILE.SAVEAS.SVG' | translate }}</li>
+          <li nz-menu-item>{{ 'MENUBAR.FILE.SAVEAS.PDF' | translate }}</li>
+        </ul>
+      </li>
+
+      <li nz-menu-divider></li>
 
       <li nz-menu-item (click)="exitApp()">
         <span title>{{ 'MENUBAR.FILE.EXIT' | translate }}</span>
@@ -35,6 +43,20 @@
     <ul>
 
       <li nz-menu-item>
+        <span title>{{ 'MENUBAR.EDIT.UNDO' | translate }}</span>
+      </li>
+
+      <li nz-menu-item>
+        <span title>{{ 'MENUBAR.EDIT.REDO' | translate }}</span>
+      </li>
+
+      <li nz-menu-divider></li>
+
+      <li nz-menu-item>
+        <span title>{{ 'MENUBAR.EDIT.CUT' | translate }}</span>
+      </li>
+
+      <li nz-menu-item>
         <span title>{{ 'MENUBAR.EDIT.COPY' | translate }}</span>
       </li>
 
@@ -42,9 +64,19 @@
         <span title>{{ 'MENUBAR.EDIT.PASTE' | translate }}</span>
       </li>
 
-      <!-- TODO: Add menuitem for cutting -->
-      <!-- TODO: Add menuitem for (un)grouping -->
-      <!-- TODO: Add menuitem for deleting -->
+      <li nz-menu-divider></li>
+
+      <li nz-submenu>
+        <span title>{{ 'MENUBAR.EDIT.GROUP.TITLE' | translate }}</span>
+        <ul>
+          <li nz-menu-item>{{ 'MENUBAR.EDIT.GROUP.MAKEGROUP' | translate }}</li>
+          <li nz-menu-item>{{ 'MENUBAR.EDIT.GROUP.UNGROUP' | translate }}</li>
+        </ul>
+      </li>
+
+      <li nz-menu-item>
+        <span title>{{ 'GENERAL.DELETE' | translate }}</span>
+      </li>
 
     </ul>
   </li>
@@ -55,13 +87,31 @@
       <span title>{{ 'MENUBAR.VIEW.TITLE' | translate }}</span>
       <ul>
 
+        <li nz-menu-item>
+          <span title>{{ 'MENUBAR.VIEW.PREVIEWBROWSER' | translate }}</span>
+        </li>
+
         <li nz-menu-group>
           <label title nz-checkbox>{{ 'MENUBAR.VIEW.DARKMODE' | translate }}</label>
         </li>
 
-        <!-- TODO: Add menu items for predefined zoom levels -->
-        <!-- TODO: Add menu item to toggle fullscreen -->
-        <!-- TODO: Add menu item to preview current project in browser -->
+        <li nz-menu-item>
+          <span title>{{ 'MENUBAR.VIEW.TOGGLEFULLSCREEN' | translate }}</span>
+        </li>
+
+        <li nz-menu-divider></li>
+
+        <li nz-submenu>
+          <span title>{{ 'MENUBAR.VIEW.ZOOM' | translate }}</span>
+          <ul>
+            <li (click)="zoom(1)" nz-menu-item>100%</li>
+            <li nz-menu-divider></li>
+            <li (click)="zoom(0.5)" nz-menu-item>50%</li>
+            <li (click)="zoom(0.75)" nz-menu-item>75%</li>
+            <li (click)="zoom(1.25)" nz-menu-item>125%</li>
+            <li (click)="zoom(1.5)" nz-menu-item>150%</li>
+          </ul>
+        </li>
 
       </ul>
     </li>
@@ -81,7 +131,9 @@
         <span title>{{ 'MENUBAR.TOOLS.SETTINGS' | translate }}</span>
       </li>
 
-      <!-- TODO: Add menu item to open dev tools? -->
+      <li nz-menu-item (click)="openDevTools()" *ngIf="electron.isDev()">
+        <span title>{{ 'MENUBAR.TOOLS.OPENDEVTOOLS' | translate }}</span>
+      </li>
 
     </ul>
   </li>
