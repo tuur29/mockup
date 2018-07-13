@@ -100,10 +100,10 @@
 
   <!-- Color picker -->
   <li class="colors">
-    <app-colorpicker [(colorValue)]="background" [(colorPresets)]="presets"
+    <app-colorpicker [(colorValue)]="backgroundColor" [(colorPresets)]="presets"
       [style.zIndex]="lastColorPicked=='back'?'2':'1'" (click)="lastColorPicked='back'">
     </app-colorpicker>
-    <app-colorpicker [(colorValue)]="foreground" [(colorPresets)]="presets"
+    <app-colorpicker [(colorValue)]="foregroundColor" [(colorPresets)]="presets"
       [style.zIndex]="lastColorPicked=='fore'?'2':'1'" (click)="lastColorPicked='fore'">
     </app-colorpicker>
   </li>
