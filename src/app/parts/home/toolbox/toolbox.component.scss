@@ -27,3 +27,8 @@ ul[nz-menu] {
     left: -16px;
 }
 
+// display first colorpicker on same spot as second
+::ng-deep .colors > app-colorpicker:nth-of-type(1) .color-picker {
+    left: 73px !important;
+}
+
