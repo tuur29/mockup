@@ -123,11 +123,11 @@
     <span title>{{ 'MENUBAR.TOOLS.TITLE' | translate }}</span>
     <ul>
 
-      <li nz-menu-item (click)="openPageInPopup('git')">
+      <li nz-menu-item (click)="openPageInPopup('git', null, null, true)">
         <span title>{{ 'MENUBAR.TOOLS.GIT' | translate }}</span>
       </li>
 
-      <li nz-menu-item (click)="openPageInPopup('settings')">
+      <li nz-menu-item (click)="openPageInPopup('settings', 600, 500)">
         <span title>{{ 'MENUBAR.TOOLS.SETTINGS' | translate }}</span>
       </li>
 
@@ -152,7 +152,7 @@
         <span title>{{ 'MENUBAR.HELP.CHECKUPDATES' | translate }}</span>
       </li>
 
-      <li nz-menu-item (click)="openPageInPopup('about')">
+      <li nz-menu-item (click)="openPageInPopup('about', 400, 400)">
         <span title>{{ 'MENUBAR.HELP.ABOUT' | translate }}</span>
       </li>
 

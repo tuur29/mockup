@@ -40,9 +40,10 @@ export class MenubarComponent implements OnInit {
     let options = {
       width: width,
       height: height,
-      minWidth: 800,
-      minHeight: 600,
-      autoHideMenuBar: true
+      minWidth: width < 800 ? width : 800,
+      minHeight: height < 600 ? height : 600,
+      autoHideMenuBar: true,
+      show: false
     };
 
     if (!seperate) {
@@ -56,6 +57,10 @@ export class MenubarComponent implements OnInit {
     } else {
       win.loadURL("file://" + __dirname +  "/index.html#/"+path);
     }
+
+    win.once('ready-to-show', () => {
+      win.show()
+    })
 
   }
 

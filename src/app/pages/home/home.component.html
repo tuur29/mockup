@@ -18,8 +18,17 @@
           <app-canvas></app-canvas>
       </nz-content>
 
-      <nz-sider [nzWidth]="300" class="panel">
-        Panel
+      <nz-sider [nzWidth]="300" class="panel" *ngIf="!panelCollapsed">
+
+        <button nz-button nzShape="circle" class="close-panel-button" (click)="togglePanel()">
+          <i class="anticon"><fa-icon [icon]="['far','times']"></fa-icon></i>
+        </button>
+
+        <div nz-menu nzMode="horizontal">
+          <!-- TODO: find way to dynamically load sidepanel and have it access canvas -->
+          <app-appearance-panel></app-appearance-panel>
+        </div>
+
       </nz-sider>
 
     </nz-layout>

@@ -8,6 +8,11 @@ import { ToolboxModule } from '../../parts/home/toolbox/toolbox.module';
 import { StatusModule } from '../../parts/home/status/status.module';
 import { CanvasModule } from '../../parts/home/canvas/canvas.module';
 
+import { AppearancePanelModule } from '../../parts/panels/appearance-panel/appearance-panel.module';
+import { TextPanelModule } from '../../parts/panels/text-panel/text-panel.module';
+import { LayersPanelModule } from '../../parts/panels/layers-panel/layers-panel.module';
+import { LinkPanelModule } from '../../parts/panels/link-panel/link-panel.module';
+
 const routes: Routes = [
   { path: "", component: HomeComponent},
 ];
@@ -21,6 +26,11 @@ const routes: Routes = [
     ToolboxModule,
     StatusModule,
     CanvasModule,
+    
+    AppearancePanelModule,
+    TextPanelModule,
+    LayersPanelModule,
+    LinkPanelModule,
   ],
   declarations: [HomeComponent]
 })

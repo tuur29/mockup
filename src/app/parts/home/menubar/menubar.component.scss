@@ -1,10 +1,9 @@
 
+.ant-menu {
+    height: 40px;
+    line-height: 37px;
+}
+
 // Make menubar draggable
-
-ul {
-    -webkit-app-region: drag;
-}
-
-ul > li {
-    -webkit-app-region: no-drag;
-}
+ul { -webkit-app-region: drag; }
+ul > li { -webkit-app-region: no-drag; }

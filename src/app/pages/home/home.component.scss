@@ -4,7 +4,7 @@
 }
 
 .ant-layout-header {
-    height: 48px;
+    height: 40px;
     padding: 0;
     background: none;
 }
@@ -16,10 +16,23 @@
 }
 
 .content {
-    height: calc( 100vh - 48px - 40px );
+    height: calc( 100vh - 40px - 40px ); // -menu -statusbar
     background: none;
 }
 
 .panel {
-    background: #ddd;
+    position: relative;
+}
+
+.close-panel-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
+.panel .ant-menu {
+    height: 100%;
+    padding: 0 10px;
+    border-left: 1px solid #e8e8e8;
+    border-bottom: none;
 }

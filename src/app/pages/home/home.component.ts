@@ -8,10 +8,16 @@ import { Component, OnInit } from '@angular/core';
 export class HomeComponent implements OnInit {
 
   toolboxCollapsed: boolean = true;
+  panelCollapsed: boolean = false;
 
   constructor() { }
 
   ngOnInit() {
+  }
+
+  togglePanel() {
+    // TODO: animate panel collapsing
+    this.panelCollapsed = !this.panelCollapsed;
   }
 
 }
