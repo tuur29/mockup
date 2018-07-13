@@ -51,9 +51,7 @@ export class MenubarComponent implements OnInit {
     }
 
     let win = new BrowserWindow(options);
-    // TODO: Find way to differ between debug or not
-    let debug = true;
-    if (debug) {
+    if (this.electron.isDev()) {
       win.loadURL('http://localhost:4200/#/'+path);
     } else {
       win.loadURL("file://" + __dirname +  "/index.html#/"+path);

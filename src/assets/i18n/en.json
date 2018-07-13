@@ -60,6 +60,17 @@
     "COLORPICKER": {
       "PRESETSTITLE": "Swatches (add by pressing '+' above)",
       "NOPRESETS": "No swatches defined"
+    },
+    "TEXT": "Text",
+    "SQUARE": "Square",
+    "LINE": "Line",
+    "PATH": "Path",
+    "ARTBOARD": "Artboard",
+    "CIRCLE": "Circle ",
+    "ARROW": "Arrow",
+    "SYMBOLSPICKER": {
+      "TITLE": "Symbols",
+      "NOSYMBOLS": "No symbols saved"
     }
   },
   "STATUS": {
@@ -75,6 +86,7 @@
       "ADD": "Add",
       "REMOVE": "Remove",
       "DELETE": "Delete",
-      "COLLAPSE": "Collapse"
+      "COLLAPSE": "Collapse",
+      "RESET": "Reset"
   }
 }

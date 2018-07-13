@@ -12,23 +12,91 @@
     </ul>
   </li>
 
-  <!-- TODO: Add tools for:
-    - text
-    - square
-    - line
-    - path
-    - artboard
-    - circle 
-  -->
-
   <li nz-menu-item>
     <span title>
-      <i class="anticon"><fa-icon [icon]="['far','eye-dropper']"></fa-icon></i>
+      <i class="anticon">
+        <fa-icon [icon]="['far','eye-dropper']"></fa-icon>
+      </i>
       <span>{{ 'TOOLBOX.EYEDROPPER' | translate }}</span>
     </span>
   </li>
 
-  <!-- TODO: Add symbol presets picker popup -->
+  <li nz-menu-divider></li>
+
+  <li nz-menu-item>
+    <span title>
+      <i class="anticon"><fa-icon [icon]="['far','square']"></fa-icon></i>
+      <span>{{ 'TOOLBOX.SQUARE' | translate }}</span>
+    </span>
+  </li>
+
+  <li nz-menu-item>
+    <span title>
+      <i class="anticon"><fa-icon [icon]="['far','circle']"></fa-icon></i>
+      <span>{{ 'TOOLBOX.CIRCLE' | translate }}</span>
+    </span>
+  </li>
+
+  <li nz-menu-item>
+    <span title>
+      <i class="anticon">
+        <!-- TODO: Improve icon for line tool -->
+        <fa-icon [icon]="['far','ruler']"></fa-icon>
+      </i>
+      <span>{{ 'TOOLBOX.LINE' | translate }}</span>
+    </span>
+  </li>
+
+  <li nz-menu-item>
+    <span title>
+      <i class="anticon">
+        <fa-icon [icon]="['far','long-arrow-alt-left']"></fa-icon>
+      </i>
+      <span>{{ 'TOOLBOX.ARROW' | translate }}</span>
+    </span>
+  </li>
+
+  <li nz-menu-item>
+    <span title>
+      <i class="anticon">
+        <fa-icon [icon]="['far','pen-nib']"></fa-icon>
+      </i>
+      <span>{{ 'TOOLBOX.PATH' | translate }}</span>
+    </span>
+  </li>
+
+  <li nz-menu-item>
+    <span title>
+      <i class="anticon"><fa-icon [icon]="['far','font']"></fa-icon></i>
+      <span>{{ 'TOOLBOX.TEXT' | translate }}</span>
+    </span>
+  </li>
+
+  <li nz-menu-divider></li>
+
+  <!-- Symbolpicker -->
+
+  <ng-template #contentTemplate>
+    <app-symbolpicker></app-symbolpicker>
+  </ng-template>
+
+  <li nz-menu-item nz-popover [nzContent]="contentTemplate" nzPlacement="right" nzTrigger="click">
+    <span title>
+      <i class="anticon">
+        <fa-icon [icon]="['far','gift']"></fa-icon>
+      </i>
+      <span>{{ 'TOOLBOX.SYMBOLSPICKER.TITLE' | translate }}</span>
+    </span>
+  </li>
+
+  <li nz-menu-item>
+    <span title>
+      <i class="anticon">
+        <fa-icon [icon]="['far','chalkboard']"></fa-icon>
+      </i>
+      <span>{{ 'TOOLBOX.ARTBOARD' | translate }}</span>
+    </span>
+  </li>
 
   <!-- Color picker -->
   <li class="colors">
