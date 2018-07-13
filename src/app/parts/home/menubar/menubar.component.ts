@@ -43,7 +43,7 @@ export class MenubarComponent implements OnInit {
     }
 
     let win = new BrowserWindow(options);
-    // TODO: find way to differ between debug or not
+    // TODO: Find way to differ between debug or not
     let debug = true;
     if (debug) {
       win.loadURL('http://localhost:4200/#/'+path);

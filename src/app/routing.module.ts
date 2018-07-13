@@ -13,6 +13,14 @@ const routes: Routes = [
         loadChildren: "../app/pages/git/git.module#GitModule",
         data: { preload: false },
     },
+    
+    // TODO: Add About page
+    // TODO: Add Settings page
+
+    // TODO: Add Add general appearance  panel (w,h,x,y,centering,opacity,rotation)
+    // TODO: Add text settings panel
+    // TODO: Add element -> artboard links panel
+
 ];
 
 @NgModule({

@@ -4,7 +4,7 @@ import { NgZorroAntdModule } from 'ng-zorro-antd';
 import { TranslateModule } from '@ngx-translate/core';
 
 // FontAwesome
-// TODO: choose a icon library
+// TODO: Choose a icon library
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { fas } from '@fortawesome/pro-solid-svg-icons';

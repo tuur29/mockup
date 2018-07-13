@@ -31,7 +31,7 @@ export class ColorpickerComponent implements OnInit {
   ngOnInit() {
   }
 
-  // TODO: fix adding presets
+  // TODO: Fix adding presets
   AddPresetColor(presets: string[]) {
     this.colorPresets = presets;
   }

@@ -18,6 +18,9 @@
         <span title>{{ 'MENUBAR.FILE.OPENPROJECT' | translate }}</span>
       </li>
 
+      <!-- Add menu item for save & save as -->
+      <!-- Add menu divider(s?) -->
+
       <li nz-menu-item (click)="exitApp()">
         <span title>{{ 'MENUBAR.FILE.EXIT' | translate }}</span>
       </li>
@@ -39,6 +42,10 @@
         <span title>{{ 'MENUBAR.EDIT.PASTE' | translate }}</span>
       </li>
 
+      <!-- TODO: Add menuitem for cutting -->
+      <!-- TODO: Add menuitem for (un)grouping -->
+      <!-- TODO: Add menuitem for deleting -->
+
     </ul>
   </li>
 
@@ -51,6 +58,10 @@
         <li nz-menu-group>
           <label title nz-checkbox>{{ 'MENUBAR.VIEW.DARKMODE' | translate }}</label>
         </li>
+
+        <!-- TODO: Add menu items for predefined zoom levels -->
+        <!-- TODO: Add menu item to toggle fullscreen -->
+        <!-- TODO: Add menu item to preview current project in browser -->
 
       </ul>
     </li>
@@ -69,6 +80,8 @@
       <li nz-menu-item (click)="openPageInPopup('settings')">
         <span title>{{ 'MENUBAR.TOOLS.SETTINGS' | translate }}</span>
       </li>
+
+      <!-- TODO: Add menu item to open dev tools? -->
 
     </ul>
   </li>
