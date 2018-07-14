@@ -30,6 +30,7 @@ export function HttpLoaderFactory(http: HttpClient) {
 
 // own items
 import { AppComponent } from './app.component';
+import { SettingsService } from './providers/settings.service';
 
 
 @NgModule({
@@ -54,6 +55,7 @@ import { AppComponent } from './app.component';
   providers: [
     { provide: NZ_I18N, useValue: en_US },
     ElectronService,
+    SettingsService,
   ],
   bootstrap: [AppComponent],
 })

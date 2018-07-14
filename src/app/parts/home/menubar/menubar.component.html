@@ -1,5 +1,5 @@
 
-<ul nz-menu [nzMode]="'horizontal'">
+<ul nz-menu nzMode="horizontal" nzSelectable="false">
 
   <!-- File  -->
   <li nz-submenu>
@@ -9,25 +9,24 @@
       <li nz-submenu>
         <span title>{{ 'MENUBAR.FILE.NEW.TITLE' | translate }}</span>
         <ul>
-          <li nz-menu-item>{{ 'MENUBAR.FILE.NEW.PROJECT' | translate }}</li>
+          <li nz-menu-item (click)="openPageInPopup('')">{{ 'MENUBAR.FILE.NEW.PROJECT' | translate }}</li>
           <li nz-menu-item (click)="canvas.newArtboard()">{{ 'MENUBAR.FILE.NEW.ARTBOARD' | translate }}</li>
         </ul>
       </li>
 
-      <li nz-menu-item>
+      <li nz-menu-item (click)="openProject()">
         <span title>{{ 'MENUBAR.FILE.OPENPROJECT' | translate }}</span>
       </li>
 
-      <li nz-menu-item (click)="canvas.save()">
+      <li nz-menu-item (click)="save()">
         <span title>{{ 'MENUBAR.FILE.SAVE' | translate }}</span>
       </li>
 
       <li nz-submenu>
         <span title>{{ 'MENUBAR.FILE.SAVEAS.TITLE' | translate }}</span>
         <ul>
-          <li nz-menu-item>{{ 'MENUBAR.FILE.SAVEAS.PNG' | translate }}</li>
-          <li nz-menu-item>{{ 'MENUBAR.FILE.SAVEAS.SVG' | translate }}</li>
-          <li nz-menu-item>{{ 'MENUBAR.FILE.SAVEAS.PDF' | translate }}</li>
+          <li nz-menu-item (click)="save(true)">{{ 'MENUBAR.FILE.SAVEAS.COPY' | translate }}</li>
+          <li nz-menu-item (click)="export()">{{ 'MENUBAR.FILE.SAVEAS.EXPORT' | translate }}</li>
         </ul>
       </li>
 
@@ -46,25 +45,25 @@
     <span title>{{ 'MENUBAR.EDIT.TITLE' | translate }}</span>
     <ul>
 
-      <li nz-menu-item>
+      <li nz-menu-item (click)="undo()">
         <span title>{{ 'MENUBAR.EDIT.UNDO' | translate }}</span>
       </li>
 
-      <li nz-menu-item>
+      <li nz-menu-item (click)="redo()">
         <span title>{{ 'MENUBAR.EDIT.REDO' | translate }}</span>
       </li>
 
       <li nz-menu-divider></li>
 
-      <li nz-menu-item>
+      <li nz-menu-item (click)="cut()">
         <span title>{{ 'MENUBAR.EDIT.CUT' | translate }}</span>
       </li>
 
-      <li nz-menu-item>
+      <li nz-menu-item (click)="copy()">
         <span title>{{ 'MENUBAR.EDIT.COPY' | translate }}</span>
       </li>
 
-      <li nz-menu-item>
+      <li nz-menu-item (click)="paste()">
         <span title>{{ 'MENUBAR.EDIT.PASTE' | translate }}</span>
       </li>
 
@@ -73,12 +72,12 @@
       <li nz-submenu>
         <span title>{{ 'MENUBAR.EDIT.GROUP.TITLE' | translate }}</span>
         <ul>
-          <li nz-menu-item>{{ 'MENUBAR.EDIT.GROUP.MAKEGROUP' | translate }}</li>
-          <li nz-menu-item>{{ 'MENUBAR.EDIT.GROUP.UNGROUP' | translate }}</li>
+          <li nz-menu-item (click)="group()">{{ 'MENUBAR.EDIT.GROUP.MAKEGROUP' | translate }}</li>
+          <li nz-menu-item (click)="ungroup()">{{ 'MENUBAR.EDIT.GROUP.UNGROUP' | translate }}</li>
         </ul>
       </li>
 
-      <li nz-menu-item>
+      <li nz-menu-item (click)="delete()">
         <span title>{{ 'GENERAL.DELETE' | translate }}</span>
       </li>
 
@@ -88,44 +87,43 @@
 
   <!-- View -->
   <li nz-submenu>
-      <span title>{{ 'MENUBAR.VIEW.TITLE' | translate }}</span>
-      <ul>
+    <span title>{{ 'MENUBAR.VIEW.TITLE' | translate }}</span>
+    <ul>
 
-        <li nz-menu-item>
-          <span title>{{ 'MENUBAR.VIEW.PREVIEWBROWSER' | translate }}</span>
-        </li>
+      <li nz-menu-item (click)="preview()">
+        <span title>{{ 'MENUBAR.VIEW.PREVIEWBROWSER' | translate }}</span>
+      </li>
 
-        <li nz-menu-item (click)="ui.togglePanel()">
-          <span title>{{ 'MENUBAR.VIEW.TOGGLEPANEL' | translate }}</span>
-        </li>
+      <li nz-menu-item (click)="ui.togglePanel()">
+        <span title>{{ 'MENUBAR.VIEW.TOGGLEPANEL' | translate }}</span>
+      </li>
 
-        <li nz-menu-group>
-          <label title nz-checkbox>{{ 'MENUBAR.VIEW.DARKMODE' | translate }}</label>
-        </li>
+      <li nz-menu-group>
+        <label title nz-checkbox [(ngModel)]="settings.darkmode">{{ 'MENUBAR.VIEW.DARKMODE' | translate }}</label>
+      </li>
 
-        <li nz-menu-item>
-          <span title>{{ 'MENUBAR.VIEW.TOGGLEFULLSCREEN' | translate }}</span>
-        </li>
+      <li nz-menu-item (click)="toggleFullscreen()">
+        <span title>{{ 'MENUBAR.VIEW.TOGGLEFULLSCREEN' | translate }}</span>
+      </li>
 
-        <li nz-menu-divider></li>
+      <li nz-menu-divider></li>
 
-        <li nz-submenu>
-          <span title>{{ 'MENUBAR.VIEW.ZOOM' | translate }}</span>
-          <ul>
-            <li (click)="zoom(1)" nz-menu-item>{{ 'GENERAL.RESET' | translate }} (100%)</li>
-            <li nz-menu-divider></li>
-            <li (click)="zoom(0.5)" nz-menu-item>50%</li>
-            <li (click)="zoom(0.75)" nz-menu-item>75%</li>
-            <li (click)="zoom(1.25)" nz-menu-item>125%</li>
-            <li (click)="zoom(1.5)" nz-menu-item>150%</li>
-          </ul>
-        </li>
+      <li nz-submenu>
+        <span title>{{ 'MENUBAR.VIEW.ZOOM' | translate }}</span>
+        <ul>
+          <li (click)="zoom(1)" nz-menu-item>{{ 'GENERAL.RESET' | translate }} (100%)</li>
+          <li nz-menu-divider></li>
+          <li (click)="zoom(0.75)" nz-menu-item>75%</li>
+          <li (click)="zoom(0.9)" nz-menu-item>90%</li>
+          <li (click)="zoom(1.1)" nz-menu-item>110%</li>
+          <li (click)="zoom(1.25)" nz-menu-item>125%</li>
+        </ul>
+      </li>
 
-      </ul>
-    </li>
+    </ul>
+  </li>
 
 
-    
   <!-- Tools -->
   <li nz-submenu>
     <span title>{{ 'MENUBAR.TOOLS.TITLE' | translate }}</span>
@@ -156,7 +154,7 @@
         <span title>{{ 'MENUBAR.HELP.HELPSITE' | translate }}</span>
       </li>
 
-      <li nz-menu-item>
+      <li nz-menu-item (click)="checkUpdates()">
         <span title>{{ 'MENUBAR.HELP.CHECKUPDATES' | translate }}</span>
       </li>
 

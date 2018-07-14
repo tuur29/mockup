@@ -10,12 +10,18 @@
       "SAVE": "Save",
       "SAVEAS": {
         "TITLE": "Save as",
+        "DIALOGTITLE": "Save project",
+        "COPY": "Copy of project",
+        "EXPORT": "Export",
+        "JPG": "Image (JPG)",
         "PNG": "Image (PNG)",
-        "SVG": "Image (SVG)",
+        "SVG": "Vector (SVG)",
         "PDF": "PDF"
       },
       "OPENPROJECT": "Open Project",
-      "EXIT": "Exit"
+      "EXIT": "Exit",
+      "FILESNAME": "Project files",
+      "FILENAME": "Project file"
     },
     "EDIT": {
       "TITLE": "Edit",

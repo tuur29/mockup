@@ -10,6 +10,8 @@ import { CanvasService } from '../../../providers/canvas.service';
 })
 export class ToolboxComponent implements OnInit {
 
+  // TODO: link toolbox items to keyboard shortcuts
+
   // collapse toolbox together with layout in home component
   private _collapsed: boolean;
   get collapsed() { return this._collapsed; }
