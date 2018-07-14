@@ -14,7 +14,7 @@ export class UIService {
   }
 
   togglePanel() {
-      this.homeComponent.togglePanel();
+    this.homeComponent.togglePanel();
   }
 
   setTextPanelEnabled(visible: boolean) {

@@ -36,4 +36,8 @@ export class ColorpickerComponent implements OnInit {
     this.colorPresets = presets;
   }
 
+  updateColor(value: string) {
+    this.colorValueChange.emit(value);
+  }
+
 }

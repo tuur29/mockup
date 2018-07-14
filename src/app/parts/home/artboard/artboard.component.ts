@@ -4,6 +4,7 @@ declare const fabric: any;
 import { Component, OnInit, Input, ViewChild, Output, EventEmitter, ElementRef } from '@angular/core';
 import { UIService } from '../../../providers/ui.service';
 import { Artboard } from '../../../models/artboard';
+import { CanvasService } from '../../../providers/canvas.service';
 
 @Component({
   selector: 'app-artboard',
@@ -24,6 +25,7 @@ export class ArtboardComponent implements OnInit {
 
   constructor(
     public ui: UIService,
+    public canvas: CanvasService,
   ) { }
 
   ngOnInit() {
@@ -83,6 +85,20 @@ export class ArtboardComponent implements OnInit {
     });
     this.artboard.object.on('selection:updated', (event) =>  {
       this.mirrorPropertiesMaybeMultiple(event);
+    });
+
+    // update stroke and fill in toolbar
+    this.artboard.object.on('selection:created', (event) =>  {
+      this.canvas.strokeColor = event.target.stroke;
+      this.canvas.fillColor = event.target.fill;
+    });
+
+    this.artboard.object.on('selection:updated', (event) =>  {
+      let length = this.artboard.object.getActiveObjects().length;
+      if (length < 2) {
+        this.canvas.strokeColor = event.target.stroke;
+        this.canvas.fillColor = event.target.fill;
+      }
     });
 
   }

@@ -137,6 +137,23 @@ export class CanvasService {
     this.getActive().object.add(group);
   }
 
+  updateStrokeColor(value: string) {
+    this.strokeColor = value;
+    if (this.getActive().object) {
+      this.getActive().object.getActiveObjects().forEach(obj => obj.set('stroke', value));
+      this.getActive().object.renderAll();
+    }
+  }
+
+
+  updateFillColor(value: string) {
+    this.fillColor = value;
+    if (this.getActive().object) {
+      this.getActive().object.getActiveObjects().forEach(obj => obj.setColor(value));
+      this.getActive().object.renderAll();
+    }
+  }
+
   // panels
 
   // appearance

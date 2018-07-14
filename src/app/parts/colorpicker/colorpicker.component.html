@@ -1,6 +1,6 @@
 
 <button nz-button nzSize="large"
-  [(colorPicker)]="colorValue" cpWidth="275"
+  [colorPicker]="colorValue" cpWidth="275" (colorPickerChange)="updateColor($event)"
   [cpPresetColors]="colorPresets" [cpPresetLabel]="'TOOLBOX.COLORPICKER.PRESETSTITLE' | translate"
   [cpPresetEmptyMessage]="'TOOLBOX.COLORPICKER.NOPRESETS' | translate"
   (cpPresetColorsChange)="AddPresetColor($event)"

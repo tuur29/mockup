@@ -50,6 +50,7 @@ export class AppearancePanelComponent implements OnInit {
     // TODO: Add aligning on artboard buttons
     // TODO: Fix scaling vs width/height
     // TODO: Add option to change default anchorpoint
+    // TODO: Add stroke width option
   }
 
   mirrorProperties(object: any) {

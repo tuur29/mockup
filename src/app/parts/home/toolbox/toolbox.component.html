@@ -100,11 +100,11 @@
 
   <!-- Color picker -->
   <li class="colors">
-    <app-colorpicker [(colorValue)]="canvas.strokeColor" [(colorPresets)]="presets"
+    <app-colorpicker [colorValue]="canvas.strokeColor" (colorValueChange)="canvas.updateStrokeColor($event)" [(colorPresets)]="presets"
       [style.zIndex]="lastColorPicked=='back'?'2':'1'" (click)="lastColorPicked='back'"
       nz-tooltip [nzTitle]="'TOOLBOX.COLORPICKER.STROKECOLOR' | translate" nzMouseEnterDelay="0" nzMouseLeaveDelay="0" nzPlacement="rightBottom">
     </app-colorpicker>
-    <app-colorpicker [(colorValue)]="canvas.fillColor" [(colorPresets)]="presets"
+    <app-colorpicker [colorValue]="canvas.fillColor" (colorValueChange)="canvas.updateFillColor($event)" [(colorPresets)]="presets"
       [style.zIndex]="lastColorPicked=='fore'?'2':'1'" (click)="lastColorPicked='fore'"
       nz-tooltip [nzTitle]="'TOOLBOX.COLORPICKER.FILLCOLOR' | translate" nzMouseEnterDelay="0" nzMouseLeaveDelay="0" nzPlacement="rightTop">
     </app-colorpicker>
