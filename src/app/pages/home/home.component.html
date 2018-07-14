@@ -20,14 +20,32 @@
 
       <nz-sider [nzWidth]="300" class="panel" *ngIf="!panelCollapsed">
 
+        <div nz-menu nzMode="horizontal">
+          
+          <nz-collapse [nzBordered]="false">
+
+            <nz-collapse-panel [nzHeader]="'PANELS.APPEARANCE.TITLE' | translate" nzActive="true" [nzDisabled]="appearancePanelDisabled">
+              <app-appearance-panel></app-appearance-panel>
+            </nz-collapse-panel>
+
+            <nz-collapse-panel [nzHeader]="'PANELS.LAYERS.TITLE' | translate" [nzDisabled]="layersPanelDisabled">
+                <app-layers-panel></app-layers-panel>
+            </nz-collapse-panel>
+
+            <nz-collapse-panel [nzHeader]="'PANELS.LINK.TITLE' | translate" [nzDisabled]="linkPanelDisabled">
+                <app-link-panel></app-link-panel>
+            </nz-collapse-panel>
+
+            <nz-collapse-panel [nzHeader]="'PANELS.TEXT.TITLE' | translate" [nzDisabled]="textPanelDisabled">
+                <app-text-panel></app-text-panel>
+            </nz-collapse-panel>
+          </nz-collapse>
+
+        </div>
+
         <button nz-button nzShape="circle" class="close-panel-button" (click)="togglePanel()">
           <i class="anticon"><fa-icon [icon]="['far','times']"></fa-icon></i>
         </button>
-
-        <div nz-menu nzMode="horizontal">
-          <!-- TODO: find way to dynamically load sidepanel and have it access canvas -->
-          <app-appearance-panel></app-appearance-panel>
-        </div>
 
       </nz-sider>
 

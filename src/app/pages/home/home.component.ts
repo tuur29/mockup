@@ -10,6 +10,11 @@ export class HomeComponent implements OnInit {
   toolboxCollapsed: boolean = true;
   panelCollapsed: boolean = false;
 
+  appearancePanelDisabled: boolean = false;
+  layersPanelDisabled: boolean = false;
+  linkPanelDisabled: boolean = false;
+  textPanelDisabled: boolean = true;
+  
   constructor() { }
 
   ngOnInit() {

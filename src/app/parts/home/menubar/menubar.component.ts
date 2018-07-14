@@ -31,6 +31,10 @@ export class MenubarComponent implements OnInit {
     console.log(fraction);
   }
 
+  togglePanel() {
+    // TODO: implement togglePanel()
+  }
+
   exitApp() {
     this.electron.remote.app.quit();
   }

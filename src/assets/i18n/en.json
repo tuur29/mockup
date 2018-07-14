@@ -35,6 +35,7 @@
       "DARKMODE": "Dark mode",
       "PREVIEWBROWSER": "Preview project",
       "TOGGLEFULLSCREEN": "Toggle fullscreen",
+      "TOGGLEPANEL": "Toggle panel",
       "ZOOM": "Zoom level"
     },
     "TOOLS": {
@@ -78,6 +79,20 @@
   },
   "CANVAS": {
 
+  },
+  "PANELS": {
+    "APPEARANCE": {
+      "TITLE": "Appearance"
+    },
+    "LAYERS": {
+      "TITLE": "Layers"
+    },
+    "LINK": {
+      "TITLE": "Links"
+    },
+    "TEXT": {
+      "TITLE": "Text"
+    }
   },
   "GENERAL": {
       "OK": "OK",
