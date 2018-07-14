@@ -18,6 +18,10 @@
         <span title>{{ 'MENUBAR.FILE.OPENPROJECT' | translate }}</span>
       </li>
 
+      <li nz-menu-item (click)="canvas.save()">
+        <span title>{{ 'MENUBAR.FILE.SAVE' | translate }}</span>
+      </li>
+
       <li nz-submenu>
         <span title>{{ 'MENUBAR.FILE.SAVEAS.TITLE' | translate }}</span>
         <ul>

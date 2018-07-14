@@ -12,6 +12,7 @@ import { AppearancePanelModule } from '../../parts/panels/appearance-panel/appea
 import { TextPanelModule } from '../../parts/panels/text-panel/text-panel.module';
 import { LayersPanelModule } from '../../parts/panels/layers-panel/layers-panel.module';
 import { LinkPanelModule } from '../../parts/panels/link-panel/link-panel.module';
+import { CanvasService } from '../../providers/canvas.service';
 
 const routes: Routes = [
   { path: "", component: HomeComponent},
@@ -32,6 +33,7 @@ const routes: Routes = [
     LayersPanelModule,
     LinkPanelModule,
   ],
-  declarations: [HomeComponent]
+  declarations: [HomeComponent],
+  providers: [CanvasService]
 })
 export class HomeModule { }
