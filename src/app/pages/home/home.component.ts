@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { UIService } from '../../providers/ui.service';
 
 @Component({
   selector: 'app-home',
@@ -15,9 +16,12 @@ export class HomeComponent implements OnInit {
   linkPanelDisabled: boolean = false;
   textPanelDisabled: boolean = true;
   
-  constructor() { }
+  constructor(
+    public ui: UIService,
+  ) { }
 
   ngOnInit() {
+    this.ui.homeComponent = this;
   }
 
   togglePanel() {

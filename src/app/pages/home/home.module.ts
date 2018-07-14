@@ -13,6 +13,7 @@ import { TextPanelModule } from '../../parts/panels/text-panel/text-panel.module
 import { LayersPanelModule } from '../../parts/panels/layers-panel/layers-panel.module';
 import { LinkPanelModule } from '../../parts/panels/link-panel/link-panel.module';
 import { CanvasService } from '../../providers/canvas.service';
+import { UIService } from '../../providers/ui.service';
 
 const routes: Routes = [
   { path: "", component: HomeComponent},
@@ -34,6 +35,9 @@ const routes: Routes = [
     LinkPanelModule,
   ],
   declarations: [HomeComponent],
-  providers: [CanvasService]
+  providers: [
+    CanvasService,
+    UIService,
+  ]
 })
 export class HomeModule { }

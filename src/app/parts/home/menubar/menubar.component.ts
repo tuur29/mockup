@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ElectronService } from '../../../providers/electron.service';
 import { CanvasService } from '../../../providers/canvas.service';
+import { UIService } from '../../../providers/ui.service';
 
 const opn = require('opn');
 
@@ -14,6 +15,8 @@ export class MenubarComponent implements OnInit {
   constructor(
     public electron: ElectronService,
     public canvas: CanvasService,
+    public ui: UIService,
+    
   ) { }
 
   ngOnInit() {
@@ -29,10 +32,6 @@ export class MenubarComponent implements OnInit {
 
   zoom(fraction: number) {
     console.log(fraction);
-  }
-
-  togglePanel() {
-    // TODO: implement togglePanel()
   }
 
   exitApp() {
