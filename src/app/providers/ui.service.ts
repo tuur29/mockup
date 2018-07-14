@@ -15,4 +15,9 @@ export class UIService {
       this.homeComponent.togglePanel();
   }
 
+  setTextPanelEnabled(visible: boolean) {
+    this.homeComponent.textPanelDisabled = !visible;
+    this.homeComponent.textPanelCollapsed = !visible;
+  }
+
 }

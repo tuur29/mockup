@@ -2,7 +2,7 @@
 <div class="canvas">
   
   <div *ngFor="let artboard of canvasService.artboards; let i = index" class="artboard">
-    <app-artboard [(artboardModel)]="canvasService.artboards[i]" (click)="setActive(element)" #element></app-artboard>
+    <app-artboard [(artboard)]="canvasService.artboards[i]" (click)="setActive(element)" #element></app-artboard>
   </div>
 
 </div>

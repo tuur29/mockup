@@ -26,9 +26,7 @@ export class CanvasService {
       else
         this.newArtboard();
     }
-
-    console.log(this.artboards);
-    setTimeout(() => console.log(this.artboards));
+    
   }
 
   setActive(fabricCanvas: any) {

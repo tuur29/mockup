@@ -24,19 +24,19 @@
           
           <nz-collapse [nzBordered]="false">
 
-            <nz-collapse-panel [nzHeader]="'PANELS.APPEARANCE.TITLE' | translate" nzActive="true" [nzDisabled]="appearancePanelDisabled">
+            <nz-collapse-panel [nzHeader]="'PANELS.APPEARANCE.TITLE' | translate" nzActive="true">
               <app-appearance-panel></app-appearance-panel>
             </nz-collapse-panel>
 
-            <nz-collapse-panel [nzHeader]="'PANELS.LAYERS.TITLE' | translate" [nzDisabled]="layersPanelDisabled">
+            <nz-collapse-panel [nzHeader]="'PANELS.LAYERS.TITLE' | translate">
                 <app-layers-panel></app-layers-panel>
             </nz-collapse-panel>
 
-            <nz-collapse-panel [nzHeader]="'PANELS.LINK.TITLE' | translate" [nzDisabled]="linkPanelDisabled">
+            <nz-collapse-panel [nzHeader]="'PANELS.LINK.TITLE' | translate">
                 <app-link-panel></app-link-panel>
             </nz-collapse-panel>
 
-            <nz-collapse-panel [nzHeader]="'PANELS.TEXT.TITLE' | translate" [nzDisabled]="textPanelDisabled">
+            <nz-collapse-panel [nzHeader]="'PANELS.TEXT.TITLE' | translate" [nzActive]="!textPanelCollapsed" [nzDisabled]="textPanelDisabled">
                 <app-text-panel></app-text-panel>
             </nz-collapse-panel>
           </nz-collapse>

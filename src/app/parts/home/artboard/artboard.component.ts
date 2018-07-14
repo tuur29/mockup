@@ -12,12 +12,12 @@ import { Artboard } from '../../../models/artboard';
 })
 export class ArtboardComponent implements OnInit {
 
-  private _artboardModel: Artboard;
-  get artboardModel() { return this._artboardModel; }
-  @Output() artboardModelChange: EventEmitter<Artboard> = new EventEmitter<Artboard>();
-  @Input() set artboardModel(value: Artboard) {
-    this._artboardModel = value;
-    this.artboardModelChange.emit(value);
+  private _artboard: Artboard;
+  get artboard() { return this._artboard; }
+  @Output() artboardChange: EventEmitter<Artboard> = new EventEmitter<Artboard>();
+  @Input() set artboard(value: Artboard) {
+    this._artboard = value;
+    this.artboardChange.emit(value);
   }
 
   @ViewChild('element') element;
@@ -28,21 +28,42 @@ export class ArtboardComponent implements OnInit {
 
   ngOnInit() {
     this.setupCanvas();
+    this.registerEvents();
   }
 
   setupCanvas() {
-    this.artboardModel.object = new fabric.Canvas(this.element.nativeElement);
+    this.artboard.object = new fabric.Canvas(this.element.nativeElement);
 
-    if (this.artboardModel.data) {
-      this.loadCanvasFromData(this.artboardModel.data);
-      this.artboardModel.data = null;
+    if (this.artboard.data) {
+      this.loadCanvasFromData(this.artboard.data);
+      this.artboard.data = null;
     }
   }
 
   loadCanvasFromData(data: any) {
-    this.artboardModel.object.loadFromJSON(data, obj => {
-      this.artboardModel.object.renderAll();
+    this.artboard.object.loadFromJSON(data, obj => {
+      this.artboard.object.renderAll();
     });
+  }
+
+  registerEvents() {
+
+    // toggle text panel depending if a text element is selected
+    this.artboard.object.on('selection:created', (event) =>  {
+      this.ui.setTextPanelEnabled(
+        event.target.type == "text"
+      );
+    });
+    this.artboard.object.on('selection:updated', (event) =>  {
+      this.ui.setTextPanelEnabled(
+        this.artboard.object.getActiveObjects().some(element => element.type == "text")
+      );
+    });
+    this.artboard.object.on('selection:cleared', (event) =>  {
+      this.ui.setTextPanelEnabled(false);
+    });
+
+
   }
 
 }
