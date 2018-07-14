@@ -48,6 +48,11 @@ export class ArtboardComponent implements OnInit {
 
   registerEvents() {
 
+    // automatically select object when added
+    this.artboard.object.on('object:added', (event) =>  {
+      this.artboard.object.setActiveObject(event.target);
+    });
+
     // toggle text panel depending if a text element is selected
     this.artboard.object.on('selection:created', (event) =>  {
       this.ui.setTextPanelEnabled(
@@ -63,7 +68,32 @@ export class ArtboardComponent implements OnInit {
       this.ui.setTextPanelEnabled(false);
     });
 
+    // update appearancepanel when editing canvas
+    this.artboard.object.on('selection:created', (event) =>  {
+      this.ui.mirrorProperties(event.target);
+    });
+    this.artboard.object.on('selection:cleared', (event) =>  {
+      this.ui.maskProperties();
+    });
+    this.artboard.object.on('object:modified', (event) =>  {
+      this.mirrorPropertiesMaybeMultiple(event);
+    });
+    this.artboard.object.on('object:moving', (event) =>  {
+      this.mirrorPropertiesMaybeMultiple(event);
+    });
+    this.artboard.object.on('selection:updated', (event) =>  {
+      this.mirrorPropertiesMaybeMultiple(event);
+    });
 
+  }
+
+  private mirrorPropertiesMaybeMultiple(event) {
+    let length = this.artboard.object.getActiveObjects().length;
+    if (length > 1) {
+      this.ui.maskProperties();
+    } else {
+      this.ui.mirrorProperties(event.target);
+    }
   }
 
 }

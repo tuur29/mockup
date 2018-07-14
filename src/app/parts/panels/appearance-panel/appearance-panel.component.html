@@ -1,3 +1,61 @@
-<p>
-  w, h, x, y, centering, opacity, rotation
-</p>
+
+<form nz-form [formGroup]="form">
+
+  <div nz-row nzGutter="12">
+
+    <h5>{{ 'PANELS.APPEARANCE.POSITION' | translate }}</h5>
+
+    <div nz-col nzSpan="12">
+
+      <nz-form-item nzFlex>
+        <nz-form-label nzFor="top">x:</nz-form-label>
+        <nz-form-control>
+          <nz-input-number nzMin="0" nzMax="10000" nzStep="10" formControlName="top" id="top" [nzFormatter]="formatterPixels" [nzParser]="parserPixels"></nz-input-number>
+        </nz-form-control>
+      </nz-form-item>
+
+    </div>
+    <div nz-col nzSpan="12">
+
+      <nz-form-item nzFlex>
+        <nz-form-label nzFor="left">y:</nz-form-label>
+        <nz-form-control>
+          <nz-input-number nzMin="0" nzMax="10000" nzStep="10" formControlName="left" id="left" [nzFormatter]="formatterPixels" [nzParser]="parserPixels"></nz-input-number>
+        </nz-form-control>
+      </nz-form-item>
+
+    </div>
+  </div>
+
+  <div nz-row nzGutter="12">
+    <h5>{{ 'PANELS.APPEARANCE.SIZING' | translate }}</h5>
+
+    <div nz-col nzSpan="12">
+
+      <nz-form-item nzFlex>
+        <nz-form-label nzFor="width">x</nz-form-label>
+        <nz-form-control>
+          <nz-input-number nzMin="1" nzMax="1000" nzStep="10" formControlName="width" id="width" [nzFormatter]="formatterPixels" [nzParser]="parserPixels"></nz-input-number>
+        </nz-form-control>
+      </nz-form-item>
+
+    </div>
+    <div nz-col nzSpan="12">
+
+      <nz-form-item nzFlex>
+        <nz-form-label nzFor="height">h</nz-form-label>
+        <nz-form-control>
+          <nz-input-number nzMin="1" nzMax="1000" nzStep="10" formControlName="height" id="height" [nzFormatter]="formatterPixels" [nzParser]="parserPixels"></nz-input-number>
+        </nz-form-control>
+      </nz-form-item>
+
+    </div>
+  </div>
+  
+  <h5>{{ 'PANELS.APPEARANCE.OPACITY' | translate }}</h5>
+  <nz-slider nzMin="0" nzMax="1" nzStep=".01" [nzMarks]="opacitymarks" [nzTipFormatter]="formatterPercent" formControlName="opacity"></nz-slider>
+
+  <h5>{{ 'PANELS.APPEARANCE.ROTATION' | translate }}</h5>
+  <nz-slider nzMin="0" nzMax="360" nzStep="1" [nzMarks]="rotationmarks" [nzTipFormatter]="formatterDegrees" formControlName="angle"></nz-slider>
+
+</form>

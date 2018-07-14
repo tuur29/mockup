@@ -90,7 +90,11 @@
   },
   "PANELS": {
     "APPEARANCE": {
-      "TITLE": "Appearance"
+      "TITLE": "Appearance",
+      "POSITION": "Position",
+      "SIZING": "Sizing",
+      "OPACITY": "Opacity",
+      "ROTATION": "Rotation"
     },
     "LAYERS": {
       "TITLE": "Layers"

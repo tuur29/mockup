@@ -7,6 +7,7 @@ import { Artboard } from "../models/artboard";
 
 export function saveCanvas(artboards: Artboard[], path: string,) {
   let json = artboards.map(artboard => artboard.toJSON());
+  console.log(json, path);
   // TODO: implement custom project save format
 
 }
