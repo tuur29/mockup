@@ -1,7 +1,9 @@
-import { Component, OnInit, Input, ViewChild } from '@angular/core';
-
 import 'fabric';
 declare const fabric: any;
+
+import { Component, OnInit, Input, ViewChild, Output, EventEmitter } from '@angular/core';
+import { UIService } from '../../../providers/ui.service';
+import { Artboard } from '../../../models/artboard';
 
 @Component({
   selector: 'app-artboard',
@@ -10,25 +12,36 @@ declare const fabric: any;
 })
 export class ArtboardComponent implements OnInit {
 
-  @Input() data: any;
-  @ViewChild('element') element;
-  artboard: any; // type is fabric.Canvas
+  private _artboardModel: Artboard;
+  get artboardModel() { return this._artboardModel; }
+  @Output() artboardModelChange: EventEmitter<Artboard> = new EventEmitter<Artboard>();
+  @Input() set artboardModel(value: Artboard) {
+    this._artboardModel = value;
+    this.artboardModelChange.emit(value);
+  }
 
-  constructor() { }
+  @ViewChild('element') element;
+
+  constructor(
+    public ui: UIService,
+  ) { }
 
   ngOnInit() {
     this.setupCanvas();
-    if (this.data)
-      this.loadCanvasFromData();
   }
 
   setupCanvas() {
-    this.artboard = new fabric.Canvas(this.element.nativeElement, { selection: false });
+    this.artboardModel.object = new fabric.Canvas(this.element.nativeElement);
+
+    if (this.artboardModel.data) {
+      this.loadCanvasFromData(this.artboardModel.data);
+      this.artboardModel.data = null;
+    }
   }
 
-  loadCanvasFromData() {
-    this.artboard.loadFromJSON(JSON.parse(this.data), obj => {
-      this.artboard.renderAll();
+  loadCanvasFromData(data: any) {
+    this.artboardModel.object.loadFromJSON(data, obj => {
+      this.artboardModel.object.renderAll();
     });
   }
 

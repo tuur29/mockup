@@ -23,7 +23,7 @@
 
   <li nz-menu-divider></li>
 
-  <li nz-menu-item>
+  <li nz-menu-item (click)="canvas.selectSquare()">
     <span title>
       <i class="anticon"><fa-icon [icon]="['far','square']"></fa-icon></i>
       <span>{{ 'TOOLBOX.SQUARE' | translate }}</span>

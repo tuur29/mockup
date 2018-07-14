@@ -10,7 +10,7 @@
         <span title>{{ 'MENUBAR.FILE.NEW.TITLE' | translate }}</span>
         <ul>
           <li nz-menu-item>{{ 'MENUBAR.FILE.NEW.PROJECT' | translate }}</li>
-          <li nz-menu-item>{{ 'MENUBAR.FILE.NEW.ARTBOARD' | translate }}</li>
+          <li nz-menu-item (click)="canvas.newArtboard()">{{ 'MENUBAR.FILE.NEW.ARTBOARD' | translate }}</li>
         </ul>
       </li>
 
