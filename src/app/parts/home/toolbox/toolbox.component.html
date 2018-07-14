@@ -1,18 +1,18 @@
 
-<ul nz-menu nzMode="inline" [nzInlineCollapsed]="collapsed">
+<ul nz-menu nzMode="inline" nzSelectable="true" [nzInlineCollapsed]="collapsed">
 
-  <li nz-submenu>
+  <li nz-submenu (click)="canvas.selectPointer()">
     <span title>
       <i class="anticon"><fa-icon [icon]="['far','mouse-pointer']"></fa-icon></i>
       <span>{{ 'TOOLBOX.SELECT.TITLE' | translate }}</span>
     </span>
     <ul>
-      <li nz-menu-item>{{ 'TOOLBOX.SELECT.ADD' | translate }}</li>
-      <li nz-menu-item>{{ 'TOOLBOX.SELECT.REMOVE' | translate }}</li>
+      <li nz-menu-item (click)="canvas.selectAddSelection()">{{ 'TOOLBOX.SELECT.ADD' | translate }}</li>
+      <li nz-menu-item (click)="canvas.selectRemoveSelection()">{{ 'TOOLBOX.SELECT.REMOVE' | translate }}</li>
     </ul>
   </li>
 
-  <li nz-menu-item>
+  <li nz-menu-item (click)="canvas.selectPicker()">
     <span title>
       <i class="anticon">
         <fa-icon [icon]="['far','eye-dropper']"></fa-icon>
@@ -30,14 +30,14 @@
     </span>
   </li>
 
-  <li nz-menu-item>
+  <li nz-menu-item (click)="canvas.selectCircle()">
     <span title>
       <i class="anticon"><fa-icon [icon]="['far','circle']"></fa-icon></i>
       <span>{{ 'TOOLBOX.CIRCLE' | translate }}</span>
     </span>
   </li>
 
-  <li nz-menu-item>
+  <li nz-menu-item (click)="canvas.selectLine()">
     <span title>
       <i class="anticon">
         <!-- TODO: Improve icon for line tool -->
@@ -47,7 +47,7 @@
     </span>
   </li>
 
-  <li nz-menu-item>
+  <li nz-menu-item (click)="canvas.selectArrow()">
     <span title>
       <i class="anticon">
         <fa-icon [icon]="['far','long-arrow-alt-left']"></fa-icon>
@@ -56,7 +56,7 @@
     </span>
   </li>
 
-  <li nz-menu-item>
+  <li nz-menu-item (click)="canvas.selectPath()">
     <span title>
       <i class="anticon">
         <fa-icon [icon]="['far','pen-nib']"></fa-icon>
@@ -65,7 +65,7 @@
     </span>
   </li>
 
-  <li nz-menu-item>
+  <li nz-menu-item (click)="canvas.selectText()">
     <span title>
       <i class="anticon"><fa-icon [icon]="['far','font']"></fa-icon></i>
       <span>{{ 'TOOLBOX.TEXT' | translate }}</span>
@@ -74,10 +74,19 @@
 
   <li nz-menu-divider></li>
 
+  <li nz-menu-item (click)="canvas.selectArtboard()">
+    <span title>
+      <i class="anticon">
+        <fa-icon [icon]="['far','chalkboard']"></fa-icon>
+      </i>
+      <span>{{ 'TOOLBOX.ARTBOARD' | translate }}</span>
+    </span>
+  </li>
+
   <!-- Symbolpicker -->
 
   <ng-template #contentTemplate>
-    <app-symbolpicker></app-symbolpicker>
+    <app-symbolpicker (pick)="canvas.addSymbol($event)"></app-symbolpicker>
   </ng-template>
 
   <li nz-menu-item nz-popover [nzContent]="contentTemplate" nzPlacement="right" nzTrigger="click">
@@ -89,22 +98,15 @@
     </span>
   </li>
 
-  <li nz-menu-item>
-    <span title>
-      <i class="anticon">
-        <fa-icon [icon]="['far','chalkboard']"></fa-icon>
-      </i>
-      <span>{{ 'TOOLBOX.ARTBOARD' | translate }}</span>
-    </span>
-  </li>
-
   <!-- Color picker -->
   <li class="colors">
-    <app-colorpicker [(colorValue)]="backgroundColor" [(colorPresets)]="presets"
-      [style.zIndex]="lastColorPicked=='back'?'2':'1'" (click)="lastColorPicked='back'">
+    <app-colorpicker [(colorValue)]="canvas.strokeColor" [(colorPresets)]="presets"
+      [style.zIndex]="lastColorPicked=='back'?'2':'1'" (click)="lastColorPicked='back'"
+      nz-tooltip [nzTitle]="'TOOLBOX.COLORPICKER.STROKECOLOR' | translate" nzMouseEnterDelay="0" nzMouseLeaveDelay="0" nzPlacement="rightBottom">
     </app-colorpicker>
-    <app-colorpicker [(colorValue)]="foregroundColor" [(colorPresets)]="presets"
-      [style.zIndex]="lastColorPicked=='fore'?'2':'1'" (click)="lastColorPicked='fore'">
+    <app-colorpicker [(colorValue)]="canvas.fillColor" [(colorPresets)]="presets"
+      [style.zIndex]="lastColorPicked=='fore'?'2':'1'" (click)="lastColorPicked='fore'"
+      nz-tooltip [nzTitle]="'TOOLBOX.COLORPICKER.FILLCOLOR' | translate" nzMouseEnterDelay="0" nzMouseLeaveDelay="0" nzPlacement="rightTop">
     </app-colorpicker>
   </li>
 

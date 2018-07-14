@@ -1,4 +1,11 @@
 
+
+// highlight buttons when item in submenu is clicked
+.ant-menu-submenu-selected {
+    // TODO: make work with ant theme
+    color: #1890ff;
+}
+
 // layout colorpickers like adobe products
 
 ul[nz-menu] {

@@ -1,7 +1,7 @@
 import 'fabric';
 declare const fabric: any;
 
-import { Component, OnInit, Input, ViewChild, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, ViewChild, Output, EventEmitter, ElementRef } from '@angular/core';
 import { UIService } from '../../../providers/ui.service';
 import { Artboard } from '../../../models/artboard';
 
@@ -20,7 +20,7 @@ export class ArtboardComponent implements OnInit {
     this.artboardChange.emit(value);
   }
 
-  @ViewChild('element') element;
+  @ViewChild('element') element: ElementRef;
 
   constructor(
     public ui: UIService,
@@ -51,12 +51,12 @@ export class ArtboardComponent implements OnInit {
     // toggle text panel depending if a text element is selected
     this.artboard.object.on('selection:created', (event) =>  {
       this.ui.setTextPanelEnabled(
-        event.target.type == "text"
+        event.target.type.indexOf("text") > -1
       );
     });
     this.artboard.object.on('selection:updated', (event) =>  {
       this.ui.setTextPanelEnabled(
-        this.artboard.object.getActiveObjects().some(element => element.type == "text")
+        this.artboard.object.getActiveObjects().some(element => element.type.indexOf("text") > -1)
       );
     });
     this.artboard.object.on('selection:cleared', (event) =>  {

@@ -17,7 +17,7 @@ export class CanvasComponent implements OnInit {
   }
 
   setActive(element: ArtboardComponent) {
-    this.canvasService.setActive(element.artboardModel);
+    this.canvasService.setActive(element.artboard);
   }
 
 }

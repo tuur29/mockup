@@ -1,19 +1,9 @@
 
-<nz-list [nzDataSource]="symbols" [nzRenderItem]="item" [nzGrid]="{gutter: 16, span: 6}">
-  <ng-template #item let-item>
-
-    <nz-list-item [nzContent]="nzContent">
-      <ng-template #nzContent>
-        
-        <nz-card>
-          <fa-icon [icon]="['far',item]" size="2x"></fa-icon>
-        </nz-card>
-
-      </ng-template>
-    </nz-list-item>
-
-  </ng-template>
-</nz-list>
+<div class="container">
+  <nz-card *ngFor="let symbol of symbols" (click)="pick.emit(symbol)">
+    <app-symbolpreview [data]="symbol"></app-symbolpreview>
+  </nz-card>
+</div>
 
 <span *ngIf="symbols.length < 1">
   {{ 'TOOLBOX.SYMBOLSPICKER.NOSYMBOLS' | translate }}

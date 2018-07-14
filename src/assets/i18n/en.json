@@ -60,7 +60,9 @@
     "EYEDROPPER": "Pick color",
     "COLORPICKER": {
       "PRESETSTITLE": "Swatches (add by pressing '+' above)",
-      "NOPRESETS": "No swatches defined"
+      "NOPRESETS": "No swatches defined",
+      "STROKECOLOR": "Stroke color",
+      "FILLCOLOR": "Fill color"
     },
     "TEXT": "Text",
     "SQUARE": "Square",
