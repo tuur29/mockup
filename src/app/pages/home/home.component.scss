@@ -24,6 +24,11 @@
     background: none;
 }
 
+.content > .ant-layout-content {
+    overflow-y: auto;
+    overflow-x: auto;
+}
+
 .panel {
     position: relative;
 }

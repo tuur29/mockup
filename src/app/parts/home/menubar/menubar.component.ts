@@ -43,7 +43,7 @@ export class MenubarComponent implements OnInit {
     })
   }
 
-  // TODO: link menubar items to keyboard shortcuts
+  // TODO: Link menubar items to keyboard shortcuts
 
   // file
 

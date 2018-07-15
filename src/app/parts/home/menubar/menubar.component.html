@@ -77,6 +77,16 @@
         </ul>
       </li>
 
+      <li nz-submenu>
+        <span title>{{ 'MENUBAR.EDIT.ARRANGE.TITLE' | translate }}</span>
+        <ul>
+          <li nz-menu-item (click)="canvas.bringToFront()">{{ 'MENUBAR.EDIT.ARRANGE.FRONT' | translate }}</li>
+          <li nz-menu-item (click)="canvas.bringForward()">{{ 'MENUBAR.EDIT.ARRANGE.FORWARDS' | translate }}</li>
+          <li nz-menu-item (click)="canvas.sendBackwards()">{{ 'MENUBAR.EDIT.ARRANGE.BACKWARDS' | translate }}</li>
+          <li nz-menu-item (click)="canvas.sendToBack()">{{ 'MENUBAR.EDIT.ARRANGE.BACK' | translate }}</li>
+        </ul>
+      </li>
+
       <li nz-menu-item (click)="delete()">
         <span title>{{ 'GENERAL.DELETE' | translate }}</span>
       </li>

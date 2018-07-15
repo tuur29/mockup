@@ -34,6 +34,13 @@
         "TITLE": "Grouping",
         "MAKEGROUP": "Group items",
         "UNGROUP": "Ungroup items"
+      },
+      "ARRANGE": {
+        "TITLE": "Arrange",
+        "FRONT": "Bring to front",
+        "FORWARDS": "Bring forward",
+        "BACKWARDS": "Send backwards",
+        "BACK": "Send to Back"
       }
     },
     "VIEW": {

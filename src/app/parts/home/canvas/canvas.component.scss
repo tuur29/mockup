@@ -3,10 +3,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: calc( 100vh - 40px - 40px ); // -menu -statusbar
-    width: 100%;
-    overflow-x: scroll;
-    overflow-y: scroll;
+    min-height: calc( 100vh - 40px - 40px ); // -menu -statusbar
+    min-width: 100%;
     background: #eee;
 }
 

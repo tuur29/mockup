@@ -73,8 +73,6 @@ export class TextPanelComponent implements OnInit {
 
   mirrorProperties(object: any) {
 
-    console.log(object);
-
     if (object)
       Object.keys(this.form.controls).forEach(key => {
         if (object[key])
@@ -86,8 +84,6 @@ export class TextPanelComponent implements OnInit {
       Object.keys(this.form.controls).forEach(key => {
         this.form.get(key).reset("", {emitEvent: false});
       });
-
-    console.log(this.form.value);
   }
 
 }

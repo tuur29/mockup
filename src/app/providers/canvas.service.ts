@@ -16,12 +16,7 @@ export class CanvasService {
   @LocalStorage() strokeColor: string = "#000000";
   @LocalStorage() fillColor: string = "#ffffff";
 
-  defaultObjectPropeties = {
-    borderColor: 'rgba(0,0,0,0.5)',
-    cornerColor: 'rgba(0,0,0,0.9)',
-    cornerSize: 10,
-    transparentCorners: true
-  };
+  defaultObjectPropeties = {};
 
   previousStates: any[][] = [];
   futureStates: any[][] = [];
@@ -236,6 +231,7 @@ export class CanvasService {
 
   paste() {
     this.saveState();
+    console.log(this._clipboard);
     this._clipboard.clone((clonedObj) => {
       this.getActive().object.discardActiveObject();
       clonedObj.set({
@@ -285,6 +281,27 @@ export class CanvasService {
     this.saveState();
     this.getActive().object.getActiveObject().toActiveSelection();
     this.getActive().object.requestRenderAll();
+  }
+
+  bringToFront() {
+    this.getActive().object.getActiveObjects().forEach(obj => {
+      this.getActive().object.bringToFront(obj);
+    });
+  }
+  bringForward() {
+    this.getActive().object.getActiveObjects().forEach(obj => {
+      this.getActive().object.bringForward(obj);
+    });
+  }
+  sendBackwards() {
+    this.getActive().object.getActiveObjects().forEach(obj => {
+      this.getActive().object.sendBackwards(obj);
+    });
+  }
+  sendToBack() {
+    this.getActive().object.getActiveObjects().forEach(obj => {
+      this.getActive().object.sendToBack(obj);
+    });
   }
 
   deleteSelection() {

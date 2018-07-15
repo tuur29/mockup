@@ -37,7 +37,8 @@ export class ArtboardComponent implements OnInit {
     this.artboard.object = new fabric.Canvas(this.element.nativeElement, {
       centeredScaling: false,
       // TODO: change uniScaleTransform to false when shift is pressed
-      uniScaleTransform: true
+      uniScaleTransform: true,
+      preserveObjectStacking: true
     });
 
 
@@ -56,6 +57,20 @@ export class ArtboardComponent implements OnInit {
   registerEvents() {
 
     // http://fabricjs.com/events
+
+    // change styling of handles
+    this.artboard.object.on('selection:created',function(e){
+      e.target.borderColor = 'rgba(0,0,0,0.5)';
+      e.target.cornerColor = 'rgba(0,0,0,0.9)';
+      e.target.cornerSize = 10;
+      e.target.transparentCorners = true;
+    });
+    this.artboard.object.on('selection:updated',function(e){
+      e.target.borderColor = 'rgba(0,0,0,0.5)';
+      e.target.cornerColor = 'rgba(0,0,0,0.9)';
+      e.target.cornerSize = 10;
+      e.target.transparentCorners = true;
+    });
 
     // automatically select object when added
     this.artboard.object.on('object:added', (event) =>  {
