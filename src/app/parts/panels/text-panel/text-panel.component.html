@@ -4,12 +4,15 @@
     <div nz-row nzGutter="12">
   
       <div nz-col nzSpan="16">
-  
+
         <nz-form-item nzFlex>
           <nz-form-control [nzTitle]="'PANELS.TEXT.FONT' | translate" nzPlacement="topLeft" nz-tooltip>
-            <nz-select style="width: 150px;" nzShowSearch formControlName="fontFamily">
-              <nz-option *ngFor="let font of fonts" [nzLabel]="font" [nzValue]="font"></nz-option>
-            </nz-select>
+            <input nz-input style="width: 150px;" formControlName="fontFamily" [nzAutocomplete]="auto">
+            <nz-autocomplete #auto>
+              <nz-auto-option *ngFor="let font of filteredFonts" [nzValue]="font">
+                {{ font }}
+              </nz-auto-option>
+            </nz-autocomplete>
           </nz-form-control>
         </nz-form-item>
   

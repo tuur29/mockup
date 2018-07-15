@@ -14,6 +14,7 @@ export class TextPanelComponent implements OnInit {
 
   // TODO: dynamically load fonts?
   fonts: string[] = ["Segoe UI", "Arial", "Times New Roman", "Helvetica", "Papyrus"];
+  filteredFonts: string[];
 
   formatterPoints = value => `${value}pt`;
   parserPoints = value => value.replace('pt', '');
@@ -43,6 +44,11 @@ export class TextPanelComponent implements OnInit {
       weight: "",
       lineHeight: "",
       charSpacing: "",
+    });
+
+    // setup font autocomplete
+    this.form.get('fontFamily').valueChanges.subscribe( query => {
+      this.filteredFonts = this.fonts.filter(f => f.toLowerCase().indexOf(query.toLowerCase()) > -1);
     });
 
     // subscribe to each control and send changes
