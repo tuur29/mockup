@@ -1,3 +1,95 @@
-<p>
-  alignment, color, weight, style, size
-</p>
+
+<form nz-form [formGroup]="form">
+
+    <div nz-row nzGutter="12">
+  
+      <div nz-col nzSpan="16">
+  
+        <nz-form-item nzFlex>
+          <nz-form-control [nzTitle]="'PANELS.TEXT.FONT' | translate" nzPlacement="topLeft" nz-tooltip>
+            <nz-select style="width: 150px;" nzShowSearch formControlName="fontFamily">
+              <nz-option *ngFor="let font of fonts" [nzLabel]="font" [nzValue]="font"></nz-option>
+            </nz-select>
+          </nz-form-control>
+        </nz-form-item>
+  
+      </div>
+      <div nz-col nzSpan="8">
+  
+        <nz-form-item nzFlex>
+          <nz-form-control [nzTitle]="'PANELS.TEXT.SIZE' | translate" nzPlacement="topLeft" nz-tooltip>
+            <nz-input-number nzMin="6" nzMax="200" nzStep="1" style="width: 65px;" formControlName="fontSize" id="fontSize" [nzFormatter]="formatterPoints" [nzParser]="parserPoints"></nz-input-number>
+          </nz-form-control>
+        </nz-form-item>
+  
+      </div>
+
+    </div>
+  
+    <div nz-row nzGutter="12">
+      <div nz-col nzSpan="24">
+
+        <nz-form-item nzFlex>
+          <div [nzTitle]="'PANELS.TEXT.BOLD' | translate" nz-tooltip>
+            <app-toggle-button formControlName="bold" icon="bold"></app-toggle-button>
+          </div>
+          <div [nzTitle]="'PANELS.TEXT.ITALIC' | translate" nz-tooltip>
+            <app-toggle-button formControlName="italic" icon="italic"></app-toggle-button>
+          </div>
+          <div [nzTitle]="'PANELS.TEXT.UNDERLINE' | translate" nz-tooltip>
+            <app-toggle-button formControlName="underline" icon="underline"></app-toggle-button>
+          </div>
+        </nz-form-item>
+
+      </div>
+    </div>
+
+    <div nz-row nzGutter="12">
+      <div nz-col nzSpan="24">
+
+        <nz-form-item nzFlex>
+          <nz-radio-group formControlName="textAlign">
+            <label nz-radio-button nzValue="left" [nzTitle]="'PANELS.TEXT.ALIGNMENT.LEFT' | translate" nz-tooltip>
+              <fa-icon [icon]="['far','align-left']"></fa-icon>
+            </label>
+            <label nz-radio-button nzValue="center" [nzTitle]="'PANELS.TEXT.ALIGNMENT.CENTER' | translate" nz-tooltip>
+              <fa-icon [icon]="['far','align-center']"></fa-icon>
+            </label>
+            <label nz-radio-button nzValue="right" [nzTitle]="'PANELS.TEXT.ALIGNMENT.RIGHT' | translate" nz-tooltip>
+              <fa-icon [icon]="['far','align-right']"></fa-icon>
+            </label>
+            <label nz-radio-button nzValue="justify" [nzTitle]="'PANELS.TEXT.ALIGNMENT.JUSTIFY' | translate" nz-tooltip>
+              <fa-icon [icon]="['far','align-justify']"></fa-icon>
+            </label>
+          </nz-radio-group>
+        </nz-form-item>
+
+      </div>
+    </div>
+
+    <div nz-row nzGutter="12">
+  
+        <div nz-col nzSpan="12">
+    
+          <nz-form-item nzFlex>
+            <fa-icon [icon]="['far','text-height']"></fa-icon>
+            <nz-form-control [nzTitle]="'PANELS.TEXT.LINESPACING' | translate" nzPlacement="topLeft" nz-tooltip>
+              <nz-input-number nzMin="0.1" nzMax="5" nzStep="0.1" style="width: 75px;" formControlName="lineHeight" id="linespacing" [nzFormatter]="formatterLine" [nzParser]="parserLine"></nz-input-number>
+            </nz-form-control>
+          </nz-form-item>
+    
+        </div>
+        <div nz-col nzSpan="12">
+    
+            <nz-form-item nzFlex>
+              <fa-icon [icon]="['far','text-width']"></fa-icon>
+              <nz-form-control [nzTitle]="'PANELS.TEXT.CHARACTERSPACING' | translate" nzPlacement="topLeft" nz-tooltip>
+                <nz-input-number nzMin="-500" nzMax="1000" nzStep="10" style="width: 75px;" formControlName="charSpacing" id="characterspacing" [nzFormatter]="formatterChar"></nz-input-number>
+              </nz-form-control>
+            </nz-form-item>
+      
+          </div>
+  
+      </div>
+
+  </form>

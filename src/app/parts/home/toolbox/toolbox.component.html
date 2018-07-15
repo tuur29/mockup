@@ -25,10 +25,12 @@
 
   <li nz-menu-item (click)="canvas.selectSquare()">
     <span title>
-      <i class="anticon"><fa-icon [icon]="['far','square']"></fa-icon></i>
+      <i class="anticon"><fa-icon [icon]="['far','rectangle-landscape']"></fa-icon></i>
       <span>{{ 'TOOLBOX.SQUARE' | translate }}</span>
     </span>
   </li>
+
+  <!-- TODO: add polygon tool -->
 
   <li nz-menu-item (click)="canvas.selectCircle()">
     <span title>
@@ -41,7 +43,7 @@
     <span title>
       <i class="anticon">
         <!-- TODO: Improve icon for line tool -->
-        <fa-icon [icon]="['far','ruler']"></fa-icon>
+        <fa-icon [icon]="['far','drafting-compass']"></fa-icon>
       </i>
       <span>{{ 'TOOLBOX.LINE' | translate }}</span>
     </span>
@@ -77,7 +79,7 @@
   <li nz-menu-item (click)="canvas.selectArtboard()">
     <span title>
       <i class="anticon">
-        <fa-icon [icon]="['far','chalkboard']"></fa-icon>
+        <fa-icon [icon]="['far','crop-alt']"></fa-icon>
       </i>
       <span>{{ 'TOOLBOX.ARTBOARD' | translate }}</span>
     </span>
@@ -92,7 +94,7 @@
   <li nz-menu-item nz-popover [nzContent]="contentTemplate" nzPlacement="right" nzTrigger="click">
     <span title>
       <i class="anticon">
-        <fa-icon [icon]="['far','gift']"></fa-icon>
+        <fa-icon [icon]="['far','stamp']"></fa-icon>
       </i>
       <span>{{ 'TOOLBOX.SYMBOLSPICKER.TITLE' | translate }}</span>
     </span>

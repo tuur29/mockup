@@ -103,7 +103,23 @@
       "TITLE": "Links"
     },
     "TEXT": {
-      "TITLE": "Text"
+      "TITLE": "Text",
+      "ALIGNMENT": {
+        "TITLE": "Alignment",
+        "LEFT": "Left",
+        "RIGHT": "Right",
+        "CENTER": "Center",
+        "JUSTIFY": "Justify"
+      },
+      "FONT": "Font",
+      "SEARCHFONT": "Search font",
+      "SIZE": "Font size",
+      "WEIGHT": "Font weight",
+      "BOLD": "Bold",
+      "LINESPACING": "Linespacing",
+      "CHARACTERSPACING": "Character spacing",
+      "UNDERLINE": "Underline",
+      "ITALIC": "Italic"
     }
   },
   "GENERAL": {
