@@ -22,8 +22,13 @@ export class Artboard {
     toJSON() {
         return {
             id: this.id,
+            name: this.name,
             data: this.object.toJSON()
         };
+    }
+
+    static fromJSON(json: any) {
+        return new Artboard(json.id, json.name, json.data);
     }
 
 }

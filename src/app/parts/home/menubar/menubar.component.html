@@ -45,11 +45,11 @@
     <span title>{{ 'MENUBAR.EDIT.TITLE' | translate }}</span>
     <ul>
 
-      <li nz-menu-item (click)="undo()">
+      <li nz-menu-item (click)="undo()" [nzDisabled]="canvas.previousStates.length < 1">
         <span title>{{ 'MENUBAR.EDIT.UNDO' | translate }}</span>
       </li>
 
-      <li nz-menu-item (click)="redo()">
+      <li nz-menu-item (click)="redo()" [nzDisabled]="canvas.futureStates.length < 1">
         <span title>{{ 'MENUBAR.EDIT.REDO' | translate }}</span>
       </li>
 

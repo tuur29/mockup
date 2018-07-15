@@ -34,7 +34,12 @@ export class ArtboardComponent implements OnInit {
   }
 
   setupCanvas() {
-    this.artboard.object = new fabric.Canvas(this.element.nativeElement);
+    this.artboard.object = new fabric.Canvas(this.element.nativeElement, {
+      centeredScaling: false,
+      // TODO: change uniScaleTransform to false when shift is pressed
+      uniScaleTransform: true
+    });
+
 
     if (this.artboard.data) {
       this.loadCanvasFromData(this.artboard.data);
@@ -49,6 +54,8 @@ export class ArtboardComponent implements OnInit {
   }
 
   registerEvents() {
+
+    // http://fabricjs.com/events
 
     // automatically select object when added
     this.artboard.object.on('object:added', (event) =>  {
@@ -88,6 +95,7 @@ export class ArtboardComponent implements OnInit {
     });
 
     // update stroke and fill in toolbar
+    // TODO fix setting both fill and stroke when selecting text
     this.artboard.object.on('selection:created', (event) =>  {
       this.canvas.strokeColor = event.target.stroke;
       this.canvas.fillColor = event.target.fill;

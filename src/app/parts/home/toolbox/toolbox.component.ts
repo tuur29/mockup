@@ -31,4 +31,6 @@ export class ToolboxComponent implements OnInit {
   ngOnInit() {
   }
 
+  // TODO Add button to switch colors around
+
 }

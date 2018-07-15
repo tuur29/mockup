@@ -16,6 +16,20 @@ export class CanvasService {
   @LocalStorage() strokeColor: string = "#000000";
   @LocalStorage() fillColor: string = "#ffffff";
 
+  defaultObjectPropeties = {
+    borderColor: 'rgba(0,0,0,0.5)',
+    cornerColor: 'rgba(0,0,0,0.9)',
+    cornerSize: 10,
+    transparentCorners: true
+  };
+
+  previousStates: any[][] = [];
+  futureStates: any[][] = [];
+  lastSaveStamp: number;
+
+  _clipboard: any;
+  maxHistorySize: number = 50;
+
   constructor(
     public electron: ElectronService,
   ) {
@@ -77,7 +91,8 @@ export class CanvasService {
   }
 
   selectSquare() {
-    var rect = new fabric.Rect({
+    this.saveState();
+    var rect = new fabric.Rect(Object.assign(this.defaultObjectPropeties, {
       left: 100,
       top: 100,
       width: 100,
@@ -85,27 +100,29 @@ export class CanvasService {
       fill: this.fillColor,
       stroke: this.strokeColor,
       strokeWidth: 3
-    });
+    }));
     this.getActive().object.add(rect);
   }
 
   selectCircle() {
-    var circle = new fabric.Circle({
+    this.saveState();
+    var circle = new fabric.Circle(Object.assign(this.defaultObjectPropeties, {
       left: 100,
       top: 100,
       radius: 50,
       fill: this.fillColor,
       stroke: this.strokeColor,
       strokeWidth: 3
-    });
+    }));
     this.getActive().object.add(circle);
   }
 
   selectLine() {
-    var line = new fabric.Line([100,100,200,200], {
+    this.saveState();
+    var line = new fabric.Line([100,100,200,200], Object.assign(this.defaultObjectPropeties, {
       stroke: this.strokeColor,
       strokeWidth: 3
-    });
+    }));
     this.getActive().object.add(line);
   }
 
@@ -118,11 +135,12 @@ export class CanvasService {
   }
 
   selectText() {
-    var line = new fabric.IText("Text", {
+    this.saveState();
+    var line = new fabric.IText("Text", Object.assign(this.defaultObjectPropeties, {
       left: 100,
       top: 100,
       fill: this.strokeColor
-    });
+    }));
     this.getActive().object.add(line);
   }
 
@@ -131,27 +149,155 @@ export class CanvasService {
   }
 
   addSymbol(symbol: any) {
+    this.saveState();
     let temp = new fabric.Canvas();
     temp.loadFromJSON(symbol);
-    let group = new fabric.Group(temp.getObjects(), { left: 100, top: 100 });
+    let group = new fabric.Group(temp.getObjects(), Object.assign(this.defaultObjectPropeties, { left: 100, top: 100 }));
     this.getActive().object.add(group);
   }
 
   updateStrokeColor(value: string) {
     this.strokeColor = value;
     if (this.getActive().object) {
+      this.saveState();
       this.getActive().object.getActiveObjects().forEach(obj => obj.set('stroke', value));
-      this.getActive().object.renderAll();
+      this.getActive().object.requestRenderAll();
     }
   }
-
 
   updateFillColor(value: string) {
     this.fillColor = value;
     if (this.getActive().object) {
+      this.saveState();
       this.getActive().object.getActiveObjects().forEach(obj => obj.setColor(value));
-      this.getActive().object.renderAll();
+      this.getActive().object.requestRenderAll();
     }
+  }
+
+  // menubar
+
+  // method: 0 -> normal saveState to previous, 1 -> save state to previous while keeping future, 2 -> push to future
+  saveState(method: number = 0) {
+
+    // TODO: group similar edits instead of limiting based on time
+    // limit states for when gradually changing something like position or opacity
+    let now = Date.now();
+    if (now - this.lastSaveStamp < 200)
+      return;
+    this.lastSaveStamp = now;
+
+    let state = this.artboards.map(artboard =>
+      artboard.toJSON()
+    );
+    if (method > 1) {
+      this.futureStates.push(state);
+      if (this.futureStates.length > this.maxHistorySize)
+        this.futureStates.splice(0,1);
+    } else {
+      this.previousStates.push(state);
+      if (this.previousStates.length > this.maxHistorySize)
+        this.previousStates.splice(0,1);
+      if (method < 1)
+        this.futureStates = [];
+    }
+  }
+
+  // TODO: reselect correct artboard and object after undo / redo
+  undo() {
+    let state = this.previousStates.pop();
+    if (!state) return;
+    this.saveState(2);
+    this.artboards = [];
+    this.activeArtboard = null;
+    state.forEach(newArtboard => {
+      this.artboards.push(Artboard.fromJSON(newArtboard));
+    });
+  }
+
+  redo() {
+    let state = this.futureStates.pop();
+    if (!state) return;
+    this.saveState(1);
+    this.artboards = [];
+    this.activeArtboard = null;
+    state.forEach(newArtboard => {
+      this.artboards.push(Artboard.fromJSON(newArtboard));
+    });
+  }
+
+  copy(deleteAfter: boolean = false): any {
+    this.getActive().object.getActiveObject().clone((cloned) => {
+      this._clipboard = cloned;
+      if (deleteAfter)
+        this.deleteSelection();
+    });
+  }
+
+  paste() {
+    this.saveState();
+    this._clipboard.clone((clonedObj) => {
+      this.getActive().object.discardActiveObject();
+      clonedObj.set({
+        left: clonedObj.left + 10,
+        top: clonedObj.top + 10,
+        evented: true,
+      });
+      if (clonedObj.type === 'activeSelection') {
+        // active selection needs a reference to the canvas.
+        clonedObj.canvas = this.getActive().object;
+        clonedObj.forEachObject((obj) => {
+          this.getActive().object.add(obj);
+        });
+        // this should solve the unselectability
+        clonedObj.setCoords();
+      } else {
+        this.getActive().object.add(clonedObj);
+      }
+      this._clipboard.top += 10;
+      this._clipboard.left += 10;
+      this.getActive().object.setActiveObject(clonedObj);
+      this.getActive().object.requestRenderAll();
+    });
+  }
+
+  groupSelection() {
+    if (!this.getActive())
+      return;
+    if (!this.getActive().object.getActiveObject())
+      return;
+    if (this.getActive().object.getActiveObject().type !== 'activeSelection')
+      return;
+
+    this.saveState();
+    this.getActive().object.getActiveObject().toGroup();
+    this.getActive().object.requestRenderAll();
+  }
+
+  unGroupSelection() {
+    if (!this.getActive())
+      return;
+    if (!this.getActive().object.getActiveObject())
+      return;
+    if (this.getActive().object.getActiveObject().type !== 'group')
+      return;
+
+    this.saveState();
+    this.getActive().object.getActiveObject().toActiveSelection();
+    this.getActive().object.requestRenderAll();
+  }
+
+  deleteSelection() {
+    // TODO: Fix remove selection
+    if (!this.getActive())
+      return;
+    if (!this.getActive().object.getActiveObject())
+      return;
+    
+    this.saveState();
+    this.getActive().object.getActiveObjects(o => {
+      this.getActive().object.remove(o);
+    });
+    this.getActive().object.requestRenderAll();
   }
 
   // panels
@@ -161,6 +307,7 @@ export class CanvasService {
   setProperty(prop: string, value: number) {
     let objects = this.getActive().object.getActiveObjects();
 
+    this.saveState();
     objects.forEach(obj => {
       switch (prop) {
         case "top": {
@@ -188,7 +335,7 @@ export class CanvasService {
           break;
         }
       }
-      this.getActive().object.renderAll();
+      this.getActive().object.requestRenderAll();
     });
 
   }

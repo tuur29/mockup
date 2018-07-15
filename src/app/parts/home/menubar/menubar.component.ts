@@ -103,35 +103,37 @@ export class MenubarComponent implements OnInit {
   // edit
 
   undo() {
-
+    if (this.canvas.previousStates.length > 0)
+      this.canvas.undo();
   }
 
   redo() {
-
+    if (this.canvas.futureStates.length > 0)
+      this.canvas.redo();
   }
 
   cut() {
-
+    this.canvas.copy(true);
   }
 
   copy() {
-
+    this.canvas.copy();
   }
 
   paste() {
-
+    this.canvas.paste();
   }
 
   group() {
-
+    this.canvas.groupSelection();
   }
 
   ungroup() {
-
+    this.canvas.unGroupSelection();
   }
 
   delete() {
-
+    this.canvas.deleteSelection();
   }
 
 
