@@ -45,7 +45,7 @@
     <span title>{{ 'MENUBAR.EDIT.TITLE' | translate }}</span>
     <ul>
 
-      <li nz-menu-item (click)="undo()" [nzDisabled]="canvas.previousStates.length < 1">
+      <li nz-menu-item (click)="undo()" [nzDisabled]="canvas.previousStates.length < 2">
         <span title>{{ 'MENUBAR.EDIT.UNDO' | translate }}</span>
       </li>
 
@@ -108,6 +108,8 @@
         <span title>{{ 'MENUBAR.VIEW.TOGGLEPANEL' | translate }}</span>
       </li>
 
+      <li nz-menu-divider></li>
+
       <li nz-menu-group>
         <label title nz-checkbox [(ngModel)]="settings.darkmode">{{ 'MENUBAR.VIEW.DARKMODE' | translate }}</label>
       </li>
@@ -115,8 +117,6 @@
       <li nz-menu-item (click)="toggleFullscreen()">
         <span title>{{ 'MENUBAR.VIEW.TOGGLEFULLSCREEN' | translate }}</span>
       </li>
-
-      <li nz-menu-divider></li>
 
       <li nz-submenu>
         <span title>{{ 'MENUBAR.VIEW.ZOOM' | translate }}</span>

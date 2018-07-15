@@ -6,6 +6,7 @@ import { ElectronService } from './electron.service';
 import { Artboard } from '../models/artboard';
 import { LocalStorage } from 'ngx-store';
 import { exportCanvas, saveCanvas } from '../helpers/save.helper';
+import { EventEmitter } from '@angular/core';
 
 @Injectable()
 export class CanvasService {
@@ -20,10 +21,13 @@ export class CanvasService {
 
   previousStates: any[][] = [];
   futureStates: any[][] = [];
+  stateEvent: EventEmitter<any[]> = new EventEmitter<any[]>();
   lastSaveStamp: number;
 
   _clipboard: any;
   maxHistorySize: number = 50;
+
+  loadedArtboardsCount = 0;
 
   constructor(
     public electron: ElectronService,
@@ -49,6 +53,20 @@ export class CanvasService {
 
   getActive(): Artboard {
     return this.activeArtboard || this.artboards[0];
+  }
+
+  markLoaded(artboard: Artboard) {
+    this.loadedArtboardsCount++;
+
+    // save first state if all artboards were loaded
+    if (this.loadedArtboardsCount == this.artboards.length) {
+      this.saveState();
+    }
+  }
+
+  selectById(artboardId: string, index: number) {
+    let artboard = this.artboards.find((a) => a.id==artboardId).object;
+    artboard.setActiveObject(artboard.item(index));
   }
 
   // Menubar
@@ -86,7 +104,6 @@ export class CanvasService {
   }
 
   selectSquare() {
-    this.saveState();
     var rect = new fabric.Rect(Object.assign(this.defaultObjectPropeties, {
       left: 100,
       top: 100,
@@ -97,10 +114,10 @@ export class CanvasService {
       strokeWidth: 3
     }));
     this.getActive().object.add(rect);
+    this.saveState();
   }
 
   selectCircle() {
-    this.saveState();
     var circle = new fabric.Circle(Object.assign(this.defaultObjectPropeties, {
       left: 100,
       top: 100,
@@ -110,15 +127,16 @@ export class CanvasService {
       strokeWidth: 3
     }));
     this.getActive().object.add(circle);
+    this.saveState();
   }
 
   selectLine() {
-    this.saveState();
     var line = new fabric.Line([100,100,200,200], Object.assign(this.defaultObjectPropeties, {
       stroke: this.strokeColor,
       strokeWidth: 3
     }));
     this.getActive().object.add(line);
+    this.saveState();
   }
 
   selectArrow() {
@@ -130,7 +148,6 @@ export class CanvasService {
   }
 
   selectText() {
-    this.saveState();
     var line = new fabric.IText("Text", Object.assign(this.defaultObjectPropeties, {
       left: 100,
       top: 100,
@@ -138,6 +155,7 @@ export class CanvasService {
       stroke: null
     }));
     this.getActive().object.add(line);
+    this.saveState();
   }
 
   selectArtboard() {
@@ -145,28 +163,28 @@ export class CanvasService {
   }
 
   addSymbol(symbol: any) {
-    this.saveState();
     let temp = new fabric.Canvas();
     temp.loadFromJSON(symbol);
     let group = new fabric.Group(temp.getObjects(), Object.assign(this.defaultObjectPropeties, { left: 100, top: 100 }));
     this.getActive().object.add(group);
+    this.saveState();
   }
 
   updateStrokeColor(value: string) {
     this.strokeColor = value;
     if (this.getActive().object) {
-      this.saveState();
       this.getActive().object.getActiveObjects().forEach(obj => obj.set('stroke', value));
       this.getActive().object.requestRenderAll();
+      this.saveState();
     }
   }
 
   updateFillColor(value: string) {
     this.fillColor = value;
     if (this.getActive().object) {
-      this.saveState();
       this.getActive().object.getActiveObjects().forEach(obj => obj.setColor(value));
       this.getActive().object.requestRenderAll();
+      this.saveState();
     }
   }
 
@@ -175,16 +193,17 @@ export class CanvasService {
   // method: 0 -> normal saveState to previous, 1 -> save state to previous while keeping future, 2 -> push to future
   saveState(method: number = 0) {
 
-    // TODO: group similar edits instead of limiting based on time
+    // TODO: Group similar edits instead of limiting based on time
     // limit states for when gradually changing something like position or opacity
     let now = Date.now();
     if (now - this.lastSaveStamp < 200)
       return;
     this.lastSaveStamp = now;
 
-    let state = this.artboards.map(artboard =>
+    let state: any[] = this.artboards.map(artboard =>
       artboard.toJSON()
     );
+    this.stateEvent.emit(state);
     if (method > 1) {
       this.futureStates.push(state);
       if (this.futureStates.length > this.maxHistorySize)
@@ -198,8 +217,13 @@ export class CanvasService {
     }
   }
 
-  // TODO: reselect correct artboard and object after undo / redo
+  // TODO: Reselect correct artboard and object after undo / redo
+  // TODO: Improve performance by only saving / restoring edited states on undo/redo
+  // TODO: Fix bug: state goes back to beginning when redoing an undo?
   undo() {
+    // first state is current state (for layers panel)
+    if (this.futureStates.length < 1)
+      this.previousStates.pop();
     let state = this.previousStates.pop();
     if (!state) return;
     this.saveState(2);
@@ -230,8 +254,6 @@ export class CanvasService {
   }
 
   paste() {
-    this.saveState();
-    console.log(this._clipboard);
     this._clipboard.clone((clonedObj) => {
       this.getActive().object.discardActiveObject();
       clonedObj.set({
@@ -255,6 +277,7 @@ export class CanvasService {
       this.getActive().object.setActiveObject(clonedObj);
       this.getActive().object.requestRenderAll();
     });
+    this.saveState();
   }
 
   groupSelection() {
@@ -265,9 +288,9 @@ export class CanvasService {
     if (this.getActive().object.getActiveObject().type !== 'activeSelection')
       return;
 
-    this.saveState();
     this.getActive().object.getActiveObject().toGroup();
     this.getActive().object.requestRenderAll();
+    this.saveState();
   }
 
   unGroupSelection() {
@@ -278,9 +301,9 @@ export class CanvasService {
     if (this.getActive().object.getActiveObject().type !== 'group')
       return;
 
-    this.saveState();
     this.getActive().object.getActiveObject().toActiveSelection();
     this.getActive().object.requestRenderAll();
+    this.saveState();
   }
 
   bringToFront() {
@@ -310,12 +333,12 @@ export class CanvasService {
       return;
     if (!this.getActive().object.getActiveObject())
       return;
-    
-    this.saveState();
+  
     this.getActive().object.getActiveObjects(o => {
       this.getActive().object.remove(o);
     });
     this.getActive().object.requestRenderAll();
+    this.saveState();
   }
 
   // panels
@@ -323,16 +346,16 @@ export class CanvasService {
   // appearance
 
   setProperty(prop: string, value: any) {
-    let objects = this.getActive().object.getActiveObjects();
 
-    this.saveState();
+    let objects = this.getActive().object.getActiveObjects();
     objects.forEach(obj => {
       let option = {};
       option[prop] = value;
       obj.set(option);
-
+      
       this.getActive().object.requestRenderAll();
     });
+    this.saveState();
 
   }
 

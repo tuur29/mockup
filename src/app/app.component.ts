@@ -10,6 +10,8 @@ import { AppConfig } from '../environments/environment';
 })
 export class AppComponent {
 
+  // TODO: Change to smaller scrollbar
+
   constructor(
     public electronService: ElectronService,
     private translate: TranslateService

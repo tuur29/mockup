@@ -18,7 +18,7 @@
           <app-canvas></app-canvas>
       </nz-content>
 
-      <nz-sider [nzWidth]="300" class="panel" *ngIf="!panelCollapsed">
+      <nz-sider [nzWidth]="300" class="panel" [hidden]="panelCollapsed">
 
         <div nz-menu nzMode="horizontal">
           
@@ -32,7 +32,7 @@
                 <app-layers-panel></app-layers-panel>
             </nz-collapse-panel>
 
-            <nz-collapse-panel [nzHeader]="'PANELS.LINK.TITLE' | translate">
+            <nz-collapse-panel [nzHeader]="'PANELS.LINK.TITLE' | translate" nzDisabled="true">
                 <app-link-panel></app-link-panel>
             </nz-collapse-panel>
 

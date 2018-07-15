@@ -31,6 +31,7 @@
 
 .panel {
     position: relative;
+    overflow-y: auto;
 }
 
 .ant-collapse {
@@ -39,12 +40,12 @@
 
 .close-panel-button {
     position: absolute;
-    top: 10px;
+    top: 8px;
     right: 10px;
 }
 
 .panel .ant-menu {
-    height: 100%;
+    min-height: 100%;
     padding: 0 10px;
     border-left: 1px solid #e8e8e8;
     border-bottom: none;

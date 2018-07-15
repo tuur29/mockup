@@ -46,6 +46,8 @@ export class ArtboardComponent implements OnInit {
       this.loadCanvasFromData(this.artboard.data);
       this.artboard.data = null;
     }
+
+    this.canvas.markLoaded(this.artboard);
   }
 
   loadCanvasFromData(data: any) {
@@ -59,13 +61,13 @@ export class ArtboardComponent implements OnInit {
     // http://fabricjs.com/events
 
     // change styling of handles
-    this.artboard.object.on('selection:created',function(e){
+    this.artboard.object.on('selection:created', (e) => {
       e.target.borderColor = 'rgba(0,0,0,0.5)';
       e.target.cornerColor = 'rgba(0,0,0,0.9)';
       e.target.cornerSize = 10;
       e.target.transparentCorners = true;
     });
-    this.artboard.object.on('selection:updated',function(e){
+    this.artboard.object.on('selection:updated', (e) => {
       e.target.borderColor = 'rgba(0,0,0,0.5)';
       e.target.cornerColor = 'rgba(0,0,0,0.9)';
       e.target.cornerSize = 10;

@@ -1,0 +1,32 @@
+
+.container {
+    max-height: 425px;
+    overflow-y: auto;
+}
+
+::ng-deep .remove-btn {
+    background: none;
+    opacity: 0.8;
+    transform: scale(0.9);
+}
+
+::ng-deep .ant-list-item {
+    cursor: pointer;
+}
+
+::ng-deep .ant-list-item-meta {
+    font-size: inherit;
+}
+
+::ng-deep .ant-list-item-meta-title {
+    margin: 0;
+    line-height: 1;
+}
+
+::ng-deep .ant-list-item-meta-description {
+    font-size: 0.8em;
+}
+
+::ng-deep .ant-collapse-content-box .ant-collapse-content-box {
+    padding-bottom: 8px !important;
+}

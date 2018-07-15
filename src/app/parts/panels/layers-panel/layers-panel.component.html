@@ -1,3 +1,37 @@
-<p>
-  elements per artboard
-</p>
+
+<nz-collapse nzBordered="false" class="container">
+
+  <nz-collapse-panel *ngFor="let layer of state; let i=index" [nzHeader]="layer.name" [nzActive]="i < 1"
+    [ngStyle]="{'background':'#f7f7f7','border-radius':'4px','margin-bottom':'10px','border':'0px'}">
+
+    <nz-list nzItemLayout="horizontal" nzSize="small">
+
+      <nz-list-item *ngFor="let item of layer.data.objects; let i=index"
+        [nzActions]="[deleteAction]" (click)="canvas.selectById(layer.id, i)">
+
+        <ng-template #deleteAction>
+          <button nz-button (click)="canvas.selectById(layer.id, i); canvas.deleteSelection()"
+            nzType="default" nzShape="circle" class="remove-btn">
+            <i class="anticon"><fa-icon [icon]="['far','trash']"></fa-icon></i>
+          </button>
+        </ng-template>
+
+        <nz-list-item-meta
+          [nzTitle]="nzTitle"
+          [nzAvatar]="nzIcon"
+          [nzDescription]="nzDescr">
+
+          <ng-template #nzIcon>
+            <fa-icon [icon]="['far', getIcon(item)]"></fa-icon>
+          </ng-template>
+          <ng-template #nzTitle>{{ getTitle(item) }}</ng-template>
+          <ng-template #nzDescr>{{ getDescription(item) }}</ng-template>
+
+        </nz-list-item-meta>
+      </nz-list-item>
+        
+    </nz-list>
+
+  </nz-collapse-panel>
+
+</nz-collapse>
