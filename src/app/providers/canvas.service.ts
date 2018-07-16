@@ -95,7 +95,7 @@ export class CanvasService {
 
   }
 
-  selectoRemoveSelection() {
+  selectRemoveSelection() {
 
   }
 

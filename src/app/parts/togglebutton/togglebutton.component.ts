@@ -51,8 +51,8 @@ export class ToggleButtonComponent implements ControlValueAccessor {
   @Input() icon: string;
   @Input() color: string;
 
-  private mode: string = "checkable";
-  private checked: boolean = false;
+  mode: string = "checkable";
+  checked: boolean = false;
 
   // this is the initial value set to the component
   public writeValue(obj: any) {
@@ -61,7 +61,7 @@ export class ToggleButtonComponent implements ControlValueAccessor {
     }
   }
 
-  private onChange(value: boolean) {
+  onChange(value: boolean) {
     this.checked = value;
     this.propagateChange(this.checked);
   }
