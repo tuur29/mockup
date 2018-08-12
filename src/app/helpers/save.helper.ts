@@ -1,4 +1,5 @@
 import 'fabric';
+import * as jsPDF from 'jspdf';
 declare const fabric: any;
 var fs = require('fs');
 
@@ -46,7 +47,7 @@ export function exportCanvas(artboards: Artboard[], path: string, type: string) 
 
     case "pdf": {
       let file = convertToPDF(artboards);
-      if (file) writeFile(file, path, "binary");
+      if (file) writeFile(file, path, "");
 
       break;
     }
@@ -80,9 +81,13 @@ function convertToSVG(artboard: Artboard) {
 }
 
 function convertToPDF(artboards: Artboard[]) {
-  // TODO: implement exporting to PDF
-  alert("Not yet supported!");
-  return null;
+  let pdf = new jsPDF('p', 'mm', 'a4');
+  artboards.forEach((artboard, i) => {
+    if (i>0) pdf.addPage();
+    let data = artboard.object.toDataURL('image/png', 1.0);
+    pdf.addImage(data, 'PNG', 0, 0, pdf.internal.pageSize.width, pdf.internal.pageSize.height);
+  });
+  return new Buffer(pdf.output('arraybuffer'));
 }
 
 function prepareSeperateFileName(artboard: Artboard, path: string) {
