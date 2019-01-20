@@ -1,4 +1,10 @@
 
+**Abandoned**. There is other software that accomplishes the same goal. 
+
+**Current status**: A very basic vector editor in Electron.
+
+-------
+
 # Mockup (Working title)
 
 An application for making mockups and exporting them to an easily viewable html page.
