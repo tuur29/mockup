@@ -9,6 +9,8 @@
 
 An application for making mockups and exporting them to an easily viewable html page.
 
+![Preview](./preview.png)
+
 ## How?
 
 Artboards in your project are saved as JSON and then saved inside a HTML page.
